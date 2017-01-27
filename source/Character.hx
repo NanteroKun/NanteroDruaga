@@ -7,7 +7,7 @@ import flixel.system.FlxAssets.FlxGraphicAsset;
 
 /**
  * ...
- * @author 
+ * @author 実際に動かすスプライトはこいつやねん
  */
 class Character extends FlxSprite
 {
