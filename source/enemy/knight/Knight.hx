@@ -19,10 +19,6 @@ class Knight extends Roper
 	}
 	override public function Move()
 	{
-		if ((Target.x - 20) % 24 == 0 && ((Target.y - 36) % 24 == 0))
-        {
-			RoperTypeMove();//向き変更
-		}	
 		super.Move();
 	}
 }
