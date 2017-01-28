@@ -21,7 +21,7 @@ import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.system.FlxAssets.FlxGraphicAsset;
-import enums.EnemySyu;
+import enums.CharacterSyu;
 
 /**
  * ...
@@ -44,37 +44,37 @@ class Enemy extends Character
 	public function new() 
 	{
 		super();
-		syu = enums.EnemySyu.No;
+		syu = enums.CharacterSyu.No;
 	}
-	public function Set(s:EnemySyu)
+	public function Set(s:CharacterSyu)
 	{
 		syu = s;
 		switch(syu)
 		{
-			case EnemySyu.BlueWispSlow:movepattern = new BlueWispSlow(this);
-			case EnemySyu.BlueWispFast:movepattern = new BlueWispFast(this);
-			case EnemySyu.RedWispFast:movepattern = new RedWispFast(this);
-			case EnemySyu.RedWispSlow:movepattern = new RedWispSlow(this);
-			case EnemySyu.GreenSlime:movepattern = new GreenSlime(this);
-			case EnemySyu.RedSlime:movepattern = new RedSlime(this);
-			case EnemySyu.BlackSlime:movepattern = new BlackSlime(this);
-			case EnemySyu.BlueSlime:movepattern = new BlueSlime(this);
-			case EnemySyu.DarkGreenSlime:movepattern = new DarkGreenSlime(this);
-			case EnemySyu.DarkYellowSlime:movepattern = new DarkYellowSlime(this);
-			case EnemySyu.WhiteSpell:movepattern = new WhiteSpell(this);
-			case EnemySyu.BlueSpell:movepattern = new BlueSpell(this);
-			case EnemySyu.RedSpell:movepattern = new RedSpell(this);
-			case EnemySyu.GreenSpell:movepattern = new GreenSpell(this);
-			case EnemySyu.FireElement:movepattern = new FireElement(this);
-			case EnemySyu.BlueKnight:movepattern = new BlueKnight(this);
-			default:
+			case CharacterSyu.BlueWispSlow:movepattern = new BlueWispSlow(this);
+			case CharacterSyu.BlueWispFast:movepattern = new BlueWispFast(this);
+			case CharacterSyu.RedWispFast:movepattern = new RedWispFast(this);
+			case CharacterSyu.RedWispSlow:movepattern = new RedWispSlow(this);
+			case CharacterSyu.GreenSlime:movepattern = new GreenSlime(this);
+			case CharacterSyu.RedSlime:movepattern = new RedSlime(this);
+			case CharacterSyu.BlackSlime:movepattern = new BlackSlime(this);
+			case CharacterSyu.BlueSlime:movepattern = new BlueSlime(this);
+			case CharacterSyu.DarkGreenSlime:movepattern = new DarkGreenSlime(this);
+			case CharacterSyu.DarkYellowSlime:movepattern = new DarkYellowSlime(this);
+			case CharacterSyu.WhiteSpell:movepattern = new WhiteSpell(this);
+			case CharacterSyu.BlueSpell:movepattern = new BlueSpell(this);
+			case CharacterSyu.RedSpell:movepattern = new RedSpell(this);
+			case CharacterSyu.GreenSpell:movepattern = new GreenSpell(this);
+			case CharacterSyu.FireElement:movepattern = new FireElement(this);
+			case CharacterSyu.BlueKnight:movepattern = new BlueKnight(this);
+			default:trace("ENEMY ja Nai yatsu Dasicha DAMEEEEEEE!!!!");
 		}
-		movepattern.GraphicSet(this);
+		movepattern.GraphicSet();
 	}
 	override public function update(elapsed:Float):Void 
 	{
 		super.update(elapsed);
-		movepattern.Move(this);
+		movepattern.Move();
 	}
 	override public function draw():Void 
 	{

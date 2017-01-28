@@ -1,5 +1,5 @@
 package enemy.slime;
-import enums.EnemySyu;
+import enums.CharacterSyu;
 import flixel.FlxG;
 
 /**
@@ -8,33 +8,32 @@ import flixel.FlxG;
  */
 class DarkYellowSlime extends Slime
 {
-	public function new(s:Enemy) 
+	public function new(s:Character) 
 	{
 		super(s);
 		waitbase = 31;
 	}
-	override public function GraphicSet(s:Enemy) 
+	override public function GraphicSet() 
 	{
-		s.loadGraphic("assets/images/enemy/slime/darkyellowslime.png", true, 16, 16);
-		super.GraphicSet(s);
+		Target.loadGraphic("assets/images/enemy/slime/darkyellowslime.png", true, 16, 16);
+		super.GraphicSet();
 	}
-	override public function Move(s:Enemy) 
+	override public function Move() 
 	{
-		super.Move(s);
+		super.Move();
 	}
-	override public function SpellDasu(s:Enemy):Void 
+	override public function SpellDasu():Void 
 	{
-		super.SpellDasu(s);
-		var syuu:EnemySyu = EnemySyu.No;
-		var k:Int = FlxG.random.int(0, 4);
-		k = 2;
+		super.SpellDasu();
+		var syuu:CharacterSyu = CharacterSyu.No;
+		var k:Int = FlxG.random.int(0, 3);
 		switch (k)
 		{
-			case 0:syuu = EnemySyu.WhiteSpell;
-			case 1:syuu = EnemySyu.BlueSpell;
-			case 2:syuu = EnemySyu.RedSpell;
-			case 3:syuu = EnemySyu.GreenSpell;
+			case 0:syuu = CharacterSyu.WhiteSpell;
+			case 1:syuu = CharacterSyu.BlueSpell;
+			case 2:syuu = CharacterSyu.RedSpell;
+			case 3:syuu = CharacterSyu.GreenSpell;
 		}
-		TsuikaEnemy.TsuikaEnemyTableSet(syuu, s.x, s.y, s.muki);
+		TsuikaEnemy.TsuikaEnemyTableSet(syuu, Target.x, Target.y, Target.muki);
 	}
 }

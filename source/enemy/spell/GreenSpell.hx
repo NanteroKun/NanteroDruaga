@@ -6,21 +6,21 @@ package enemy.spell;
  */
 class GreenSpell extends Spell
 {
-	public function new(s:Enemy) 
+	public function new(s:Character) 
 	{
 		super(s);
 	}
-	override public function GraphicSet(s:Enemy) 
+	override public function GraphicSet() 
 	{
-		super.GraphicSet(s);
-		s.color = 0x00de00;
+		super.GraphicSet();
+		Target.color = 0x00de00;
 	}
-	override public function Move(s:Enemy) 
+	override public function Move() 
 	{
-		if (s.x<=20|| s.x >= 428||s.y<=36||s.y>=228)
+		if (Target.x<=20|| Target.x >= 428||Target.y<=36||Target.y>=228)
 		{
-			s.kill();
+			Target.kill();
 		}
-		super.Move(s);
+		super.Move();
 	}
 }

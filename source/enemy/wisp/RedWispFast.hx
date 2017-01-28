@@ -7,17 +7,17 @@ import flixel.FlxSprite;
  */
 class RedWispFast extends RedWisp
 {
-	public function new(s:Enemy) 
+	public function new(s:Character) 
 	{
 		super(s);
-		s.speed = 2;
+		Target.speed = 2;
 	}
-	override public function GraphicSet(s:Enemy) 
+	override public function GraphicSet() 
 	{
-		super.GraphicSet(s);
+		super.GraphicSet();
 	}
-	override public function Move(s:Enemy) 
+	override public function Move() 
 	{
-		super.Move(s);
+		super.Move();
 	}
 }

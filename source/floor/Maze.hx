@@ -1,6 +1,5 @@
 package floor;
 import flixel.FlxObject;
-import flixel.FlxSprite;
 import flixel.group.FlxGroup.FlxTypedGroup;
 
 /**
@@ -76,7 +75,7 @@ class Maze extends FlxObject
 					if (kabe == 3 && returnmap(x1 - 1, y1) != -1) { wall[x1+ y1*17] = kabe; break; }
 					wall[x1+ y1*17] = kabe;    //壁ではなかった。現在位置に壁セット
 					wall2[x1+ y1*17] = kabe;   //現在進行中の柱にもセット
-                    switch (kabe)               //次の柱に移動
+					switch (kabe)               //次の柱に移動
 					{
 						case 0: y1--; 
 						case 1: x1++; 

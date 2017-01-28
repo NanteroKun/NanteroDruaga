@@ -4,7 +4,7 @@ import disp.GamenUpDisp;
 import disp.Time;
 import enemy.Enemy;
 import enemy.TsuikaEnemy;
-import enums.EnemySyu;
+import enums.CharacterSyu;
 import flixel.FlxCamera;
 import flixel.FlxG;
 import flixel.FlxObject;
@@ -74,14 +74,14 @@ class PlayState extends FlxState
 	{
 		for (i in 0...100)
 		{
-			if (TsuikaEnemy.EnemyBorn[i].syu != EnemySyu.No)
+			if (TsuikaEnemy.EnemyBorn[i].syu != CharacterSyu.No)
 			{
 				EnemyUmu(TsuikaEnemy.EnemyBorn[i].syu, TsuikaEnemy.EnemyBorn[i].x, TsuikaEnemy.EnemyBorn[i].y, TsuikaEnemy.EnemyBorn[i].m);
-				TsuikaEnemy.EnemyBorn[i].syu = EnemySyu.No;
+				TsuikaEnemy.EnemyBorn[i].syu = CharacterSyu.No;
 			}
 		}
 	}
-	private function EnemyUmu(syu:EnemySyu, x:Float, y:Float, m:Int):Void
+	private function EnemyUmu(syu:CharacterSyu, x:Float, y:Float, m:Int):Void
 	{
 		var temp:Enemy;
 		temp = enemygroup.getFirstDead();
@@ -101,23 +101,23 @@ class PlayState extends FlxState
 			temp = enemygroup.getFirstDead();
 			if (temp != null)
 			{
-				var s = enums.EnemySyu.RedWispFast;
+				var s = enums.CharacterSyu.RedWispFast;
 				var k:Int = FlxG.random.int(0, 6);
 				//k = 10;
 				switch(k)
 				{
-					case 0:temp.Set(enums.EnemySyu.RedSlime);
-					case 1:temp.Set(enums.EnemySyu.BlackSlime);
-					case 2:temp.Set(enums.EnemySyu.GreenSlime);
-					case 3:temp.Set(enums.EnemySyu.BlueSlime);
-					case 4:temp.Set(enums.EnemySyu.DarkGreenSlime);
-					case 5:temp.Set(enums.EnemySyu.DarkYellowSlime);
+					case 0:temp.Set(enums.CharacterSyu.RedSlime);
+					case 1:temp.Set(enums.CharacterSyu.BlackSlime);
+					case 2:temp.Set(enums.CharacterSyu.GreenSlime);
+					case 3:temp.Set(enums.CharacterSyu.BlueSlime);
+					case 4:temp.Set(enums.CharacterSyu.DarkGreenSlime);
+					case 5:temp.Set(enums.CharacterSyu.DarkYellowSlime);
 					
-					case 6:temp.Set(enums.EnemySyu.BlueWispFast);
-					case 7:temp.Set(enums.EnemySyu.BlueWispSlow);
-					case 8:temp.Set(enums.EnemySyu.RedWispFast);
-					case 9:temp.Set(enums.EnemySyu.RedWispSlow);
-					case 10:temp.Set(enums.EnemySyu.BlueKnight);
+					case 6:temp.Set(enums.CharacterSyu.BlueWispFast);
+					case 7:temp.Set(enums.CharacterSyu.BlueWispSlow);
+					case 8:temp.Set(enums.CharacterSyu.RedWispFast);
+					case 9:temp.Set(enums.CharacterSyu.RedWispSlow);
+					case 10:temp.Set(enums.CharacterSyu.BlueKnight);
 				}
 				temp.revive();
 			}

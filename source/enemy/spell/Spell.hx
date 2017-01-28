@@ -6,30 +6,23 @@ package enemy.spell;
  */
 class Spell extends CharacterMovePattern
 {
-	public function new(s:Enemy)                  
+	public function new(s:Character)                  
 	{
 		super(s);
 		s.speed = 4;
 	}
-	override public function GraphicSet(s:Enemy) 
+	override public function GraphicSet() 
 	{
-		super.GraphicSet(s);
-		s.loadGraphic("assets/images/spell/spell.png", true, 16, 16);
-		s.animation.add("0", [0, 1], 30, true);
-		s.animation.add("1", [6, 7], 30, true);
-		s.animation.add("2", [4, 5], 30, true);
-		s.animation.add("3", [2, 3], 30, true);
-		s.animation.play(Std.string(s.muki));
+		super.GraphicSet();
+		Target.loadGraphic("assets/images/spell/spell.png", true, 16, 16);
+		Target.animation.add("0", [0, 1], 30, true);
+		Target.animation.add("1", [6, 7], 30, true);
+		Target.animation.add("2", [4, 5], 30, true);
+		Target.animation.add("3", [2, 3], 30, true);
+		Target.animation.play(Std.string(Target.muki));
 	}
-	override public function Move(s:Enemy) 
+	override public function Move() 
 	{
-		super.Move(s);
-		switch (s.muki)
-		{
-			case 0:s.y -= s.speed;
-			case 1:s.x += s.speed;
-			case 2:s.y += s.speed;
-			case 3:s.x -= s.speed;
-		}
+		super.Move();
 	}
 }

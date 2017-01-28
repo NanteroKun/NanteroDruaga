@@ -1,5 +1,5 @@
 package enemy;
-import enums.EnemySyu;
+import enums.CharacterSyu;
 
 /**
  * ...
@@ -7,14 +7,14 @@ import enums.EnemySyu;
  */
 class TsuikaEnemy
 {
-	public static var EnemyBorn:Array<{syu:EnemySyu,x:Float,y:Float,m:Int}>;
+	public static var EnemyBorn:Array<{syu:CharacterSyu,x:Float,y:Float,m:Int}>;
 	public static var TsuikaEnemyStarCnt:Int = 0;
 	public static function Init():Void
 	{
-		TsuikaEnemy.EnemyBorn = new Array<{syu:EnemySyu,x:Float,y:Float,m:Int}>();
+		TsuikaEnemy.EnemyBorn = new Array<{syu:CharacterSyu,x:Float,y:Float,m:Int}>();
 		for (i in 0...100)
 		{
-			TsuikaEnemy.EnemyBorn[i] = {syu:EnemySyu.No, x:0, y:0, m:99};
+			TsuikaEnemy.EnemyBorn[i] = {syu:CharacterSyu.No, x:0, y:0, m:99};
 		}
 	}
 	/**
@@ -25,11 +25,11 @@ class TsuikaEnemy
 	 * @param	mu 向き
 	 * @return     成功？失敗？
 	 */
-	public static function TsuikaEnemyTableSet(s:EnemySyu,px:Float,py:Float,mu:Int):Bool
+	public static function TsuikaEnemyTableSet(s:CharacterSyu,px:Float,py:Float,mu:Int):Bool
 	{
 		for (i in TsuikaEnemyStarCnt...100)
 		{
-			if (EnemyBorn[i].syu == EnemySyu.No)
+			if (EnemyBorn[i].syu == CharacterSyu.No)
 			{
 				EnemyBorn[i] = {syu:s, x:px, y:py, m:mu};
 				return true;

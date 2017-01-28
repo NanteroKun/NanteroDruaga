@@ -10,25 +10,18 @@ import flixel.system.FlxAssets.FlxGraphicAsset;
  */
 class Wisp extends CharacterMovePattern
 {
-	public function new(s:Enemy)                  
+	public function new(s:Character)                  
 	{
 		super(s);
-		s.setPosition(Reg.XposSet(), Reg.YposSet());
-		s.muki = FlxG.random.int(0, 3);
+		Target.setPosition(Reg.XposSet(), Reg.YposSet());
+		Target.muki = FlxG.random.int(0, 3);
 	}
-	override public function GraphicSet(s:Enemy) 
+	override public function GraphicSet() 
 	{
-		super.GraphicSet(s);
+		super.GraphicSet();
 	}
-	override public function Move(s:Enemy) 
+	override public function Move() 
 	{
-		super.Move(s);
-		switch (s.muki)
-		{
-			case 0:s.y -= s.speed;
-			case 1:s.x += s.speed;
-			case 2:s.y += s.speed;
-			case 3:s.x -= s.speed;
-		}
+		super.Move();
 	}
 }

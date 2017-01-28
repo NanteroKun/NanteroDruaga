@@ -10,39 +10,39 @@ class Slime extends CharacterMovePattern
 	private var waitcnt:Int;
 	private var walkcnt:Int;
 	private var waitbase:Int;
-	public function new(s:Enemy) 
+	public function new(s:Character) 
 	{
 		super(s);
 		waitcnt = FlxG.random.int(0, 255);
-		s.muki = FlxG.random.int(0, 3);
+		Target.muki = FlxG.random.int(0, 3);
 		walkcnt = 0;
-		s.setPosition(Reg.XposSet(), Reg.YposSet());
+		Target.setPosition(Reg.XposSet(), Reg.YposSet());
 	}
-	override public function GraphicSet(s:Enemy) 
+	override public function GraphicSet() 
 	{
-		super.GraphicSet(s);
-		s.animation.add("idle", [0], 30, false);
-		s.animation.add("purupuru", [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1], 30, false);
-		s.animation.add("walk", [0, 1, 2, 0, 1, 0, 1, 0, 2, 1, 0, 1, 0, 2, 1, 0, 1], 30, false);
+		super.GraphicSet();
+		Target.animation.add("idle", [0], 30, false);
+		Target.animation.add("purupuru", [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1], 30, false);
+		Target.animation.add("walk", [0, 1, 2, 0, 1, 0, 1, 0, 2, 1, 0, 1, 0, 2, 1, 0, 1], 30, false);
 	}
-	override public function Move(s:Enemy) 
+	override public function Move() 
 	{
-		super.Move(s);
+		//super.Move();スライムは自動では移動しないんですよ
 		if (waitcnt > 0)
 		{
 			waitcnt--;
 			if (waitcnt == 0)
 			{
-				s.muki = FlxG.random.int(0, 3);
-				if (IdousakiChk(s.muki, s.x, s.y))
+				Target.muki = FlxG.random.int(0, 3);
+				if (IdousakiChk(Target.muki, Target.x, Target.y))
 				{
-					s.animation.play("walk");
+					Target.animation.play("walk");
 					walkcnt = 0;
 				}
 				else
 				{
-					s.muki = FlxG.random.int(0, 3);
-					if (!IdousakiChk(s.muki, s.x, s.y))
+					Target.muki = FlxG.random.int(0, 3);
+					if (!IdousakiChk(Target.muki, Target.x, Target.y))
 					{
 						waitcnt = FlxG.random.int(0, waitbase) + 16;
 						if (waitcnt > 255)
@@ -52,7 +52,7 @@ class Slime extends CharacterMovePattern
 					}
 					else
 					{
-						s.animation.play("walk");
+						Target.animation.play("walk");
 						walkcnt = 0;
 					}
 				}
@@ -64,12 +64,12 @@ class Slime extends CharacterMovePattern
 			switch (walkcnt)
 			{
 				case 4, 16, 28:
-					switch (s.muki)
+					switch (Target.muki)
 					{
-						case 0:s.y -= 8;
-						case 1:s.x += 8;
-						case 2:s.y += 8;
-						case 3:s.x -= 8;
+						case 0:Target.y -= 8;
+						case 1:Target.x += 8;
+						case 2:Target.y += 8;
+						case 3:Target.x -= 8;
 					}
 			}
 			if (walkcnt == 34)
@@ -85,11 +85,11 @@ class Slime extends CharacterMovePattern
 		{
 			if (waitcnt > 0)
 			{
-				SpellDasu(s);
+				SpellDasu();
 			}
 		}
 	}
-	public function SpellDasu(s:Enemy):Void
+	public function SpellDasu():Void
 	{
 		
 	}

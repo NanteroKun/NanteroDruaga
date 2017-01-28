@@ -1,9 +1,7 @@
 package;
 
-import enums.EnemySyu;
-import flash.utils.ByteArray;
+import enums.CharacterSyu;
 import flixel.FlxSprite;
-import flixel.system.FlxAssets.FlxGraphicAsset;
 
 /**
  * ...
@@ -13,7 +11,7 @@ class Character extends FlxSprite
 {
 	public var speed:Float;
 	public var muki:Int;
-	public var syu:enums.EnemySyu;
+	public var syu:enums.CharacterSyu;
 	public var movepattern:CharacterMovePattern;
 	public function new() 
 	{

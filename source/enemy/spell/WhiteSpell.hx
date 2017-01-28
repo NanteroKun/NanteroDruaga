@@ -6,24 +6,24 @@ package enemy.spell;
  */
 class WhiteSpell extends Spell
 {
-	public function new(s:Enemy) 
+	public function new(s:Character) 
 	{
 		super(s);
 	}
-	override public function GraphicSet(s:Enemy) 
+	override public function GraphicSet() 
 	{
-		super.GraphicSet(s);
-		s.color = 0xdedede;
+		super.GraphicSet();
+		Target.color = 0xdedede;
 	}
-	override public function Move(s:Enemy) 
+	override public function Move() 
 	{
-		if ((s.x - 20) % 24 == 0 && (s.y - 36) % 24 == 0 )
+		if ((Target.x - 20) % 24 == 0 && (Target.y - 36) % 24 == 0 )
 		{
-			if (!IdousakiChk(s.muki, s.x, s.y))
+			if (!IdousakiChk(Target.muki, Target.x, Target.y))
 			{
-				s.kill();
+				Target.kill();
 			}
 		}
-		super.Move(s);
+		super.Move();
 	}
 }

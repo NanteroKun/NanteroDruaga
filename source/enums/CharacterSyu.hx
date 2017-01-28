@@ -3,9 +3,10 @@ package enums;
 /**
  * @author 
  */
-enum EnemySyu 
+enum CharacterSyu 
 {
 	No; 
+	Gil;
 	WhiteSpell; BlueSpell; RedSpell; GreenSpell; FireElement;
 	BlueWispSlow; BlueWispFast; RedWispSlow; RedWispFast;
 	GreenSlime; BlackSlime; RedSlime; BlueSlime; DarkGreenSlime; DarkYellowSlime;

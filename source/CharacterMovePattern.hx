@@ -12,24 +12,31 @@ import floor.Maze;
 class CharacterMovePattern
 {
 	private var Target:Character;
-	public function new(s:Enemy) //Targetにs:Character参照渡しで以後Targetに対して操作する
+	public function new(s:Character) //Targetにs:Character参照渡しで以後Targetに対して操作する
+	{
+		Target = s;
+	}
+	public function GraphicSet()
 	{
 	}
-	public function GraphicSet(s:Enemy)
+	public function Move()
 	{
-	}
-	public function Move(s:Enemy)
-	{
-	}
-	private function RoperTypeMove(s:Enemy):Void
-	{
-			
-		if (s.x == Reg.GilPos.x && s.y == Reg.GilPos.y)
+		switch (Target.muki)
 		{
-			s.muki = 3;
-			if (!HidariMoveChk(s.x,s.y))//左に壁があったら？
+			case 0:Target.y -= Target.speed;
+			case 1:Target.x += Target.speed;
+			case 2:Target.y += Target.speed;
+			case 3:Target.x -= Target.speed;
+		}
+	}
+	private function RoperTypeMove():Void
+	{
+		if (Target.x == Reg.GilPos.x && Target.y == Reg.GilPos.y)
+		{
+			Target.muki = 3;
+			if (!HidariMoveChk(Target.x,Target.y))//左に壁があったら？
 			{
-				s.muki = FlxG.random.int(0, 3);
+				Target.muki = FlxG.random.int(0, 3);
 			}
 			else
 			{
@@ -38,14 +45,14 @@ class CharacterMovePattern
 		}
 		else
 		{
-			if (s.x == Reg.GilPos.x)
+			if (Target.x == Reg.GilPos.x)
 			{
-				if (s.y < Reg.GilPos.y)
+				if (Target.y < Reg.GilPos.y)
 				{
-					s.muki = 2;
-					if (!ShitaMoveChk(s.x, s.y))
+					Target.muki = 2;
+					if (!ShitaMoveChk(Target.x, Target.y))
 					{
-						s.muki = FlxG.random.int(0, 3);
+						Target.muki = FlxG.random.int(0, 3);
 					}
 					else
 					{
@@ -54,10 +61,10 @@ class CharacterMovePattern
 				}
 				else
 				{
-					s.muki = 0;
-					if (!UeMoveChk(s.x, s.y))
+					Target.muki = 0;
+					if (!UeMoveChk(Target.x, Target.y))
 					{
-						s.muki = FlxG.random.int(0, 3);
+						Target.muki = FlxG.random.int(0, 3);
 					}
 					else
 					{
@@ -65,14 +72,14 @@ class CharacterMovePattern
 					}
 				}
 			}
-			if (s.y == Reg.GilPos.y)
+			if (Target.y == Reg.GilPos.y)
 			{
-				if (s.x < Reg.GilPos.x)
+				if (Target.x < Reg.GilPos.x)
 				{
-					s.muki = 1;
-					if (!MigiMoveChk(s.x, s.y))
+					Target.muki = 1;
+					if (!MigiMoveChk(Target.x, Target.y))
 					{
-						s.muki = FlxG.random.int(0, 3);
+						Target.muki = FlxG.random.int(0, 3);
 					}
 					else
 					{
@@ -81,10 +88,10 @@ class CharacterMovePattern
 				}
 				else
 				{
-					s.muki = 3;
-					if (!HidariMoveChk(s.x, s.y))
+					Target.muki = 3;
+					if (!HidariMoveChk(Target.x, Target.y))
 					{
-						s.muki = FlxG.random.int(0, 3);
+						Target.muki = FlxG.random.int(0, 3);
 					}
 					else
 					{
@@ -96,12 +103,12 @@ class CharacterMovePattern
 		var ok:Bool = false;
 		while (ok)
 		{
-			switch(s.muki)
+			switch(Target.muki)
 			{
-				case 0:if (MigiMoveChk(s.x, s.y)){s.muki = 1; ok = true; }else{s.muki = 3; }
-				case 1:if (ShitaMoveChk(s.x, s.y)){s.muki = 2; ok = true; }else{s.muki = 0; }
-				case 2:if (HidariMoveChk(s.x, s.y)){s.muki = 3; ok = true; }else{s.muki = 1; }
-				case 3:if (UeMoveChk(s.x, s.y)){s.muki = 0; ok = true; }else{s.muki = 2;}
+				case 0:if (MigiMoveChk(Target.x, Target.y)){Target.muki = 1; ok = true; }else{Target.muki = 3; }
+				case 1:if (ShitaMoveChk(Target.x, Target.y)){Target.muki = 2; ok = true; }else{Target.muki = 0; }
+				case 2:if (HidariMoveChk(Target.x, Target.y)){Target.muki = 3; ok = true; }else{Target.muki = 1; }
+				case 3:if (UeMoveChk(Target.x, Target.y)){Target.muki = 0; ok = true; }else{Target.muki = 2;}
 			}
 		}
 	}

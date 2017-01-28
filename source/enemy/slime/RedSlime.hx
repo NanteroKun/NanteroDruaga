@@ -1,7 +1,7 @@
 package enemy.slime;
 import enemy.spell.Spell;
 import enemy.spell.WhiteSpell;
-import enums.EnemySyu;
+import enums.CharacterSyu;
 
 /**
  * ...
@@ -9,23 +9,23 @@ import enums.EnemySyu;
  */
 class RedSlime extends Slime
 {
-	public function new(s:Enemy) 
+	public function new(s:Character) 
 	{
 		super(s);
 		waitbase = 127;
 	}
-	override public function GraphicSet(s:Enemy) 
+	override public function GraphicSet() 
 	{
-		s.loadGraphic("assets/images/enemy/slime/redslime.png", true, 16, 16);
-		super.GraphicSet(s);
+		Target.loadGraphic("assets/images/enemy/slime/redslime.png", true, 16, 16);
+		super.GraphicSet();
 	}
-	override public function Move(s:Enemy) 
+	override public function Move() 
 	{
-		super.Move(s);
+		super.Move();
 	}
-	override public function SpellDasu(s:Enemy):Void 
+	override public function SpellDasu():Void 
 	{
-		super.SpellDasu(s);
-		TsuikaEnemy.TsuikaEnemyTableSet(EnemySyu.WhiteSpell, s.x, s.y, s.muki);
+		super.SpellDasu();
+		TsuikaEnemy.TsuikaEnemyTableSet(CharacterSyu.WhiteSpell, Target.x, Target.y, Target.muki);
 	}
 }

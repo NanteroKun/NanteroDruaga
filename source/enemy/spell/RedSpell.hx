@@ -1,5 +1,5 @@
 package enemy.spell;
-import enums.EnemySyu;
+import enums.CharacterSyu;
 
 /**
  * ...
@@ -8,38 +8,39 @@ import enums.EnemySyu;
 class RedSpell extends Spell
 {
 	private var firstframe:Bool;
-	public function new(s:Enemy) 
+	public function new(s:Character) 
 	{
 		super(s);
 		firstframe = true;
 	}
-	override public function GraphicSet(s:Enemy) 
+	override public function GraphicSet() 
 	{
-		super.GraphicSet(s);
-		s.color = 0xde0000;
+		super.GraphicSet();
+		Target.color = 0xde0000;
 	}
-	override public function Move(s:Enemy) 
+	override public function Move() 
 	{
-		if ((s.x - 20) % 24 == 0 && (s.y - 36) % 24 == 0 )
+		if ((Target.x - 20) % 24 == 0 && (Target.y - 36) % 24 == 0 )
 		{
-			if (!IdousakiChk(s.muki, s.x, s.y)) 
+			if (!IdousakiChk(Target.muki, Target.x, Target.y)) 
 			{
-				element(s);
+				element();
 			}
 			if (!firstframe)
 			{
-				if (IdousakiChk(Reg.MigiTurn(s.muki), s.x, s.y)||IdousakiChk(Reg.HidariTurn(s.muki),s.x,s.y))
+				if (IdousakiChk(Reg.MigiTurn(Target.muki), Target.x, Target.y)
+				||IdousakiChk(Reg.HidariTurn(Target.muki),Target.x,Target.y))
 				{
-					element(s);
+					element();
 				}
 			}
 		}
 		firstframe = false;
-		super.Move(s);
+		super.Move();
 	}
-	private function element(s:Enemy):Void
+	private function element():Void
 	{
-		s.kill();
-		TsuikaEnemy.TsuikaEnemyTableSet(EnemySyu.FireElement, s.x, s.y, s.muki);
+		TsuikaEnemy.TsuikaEnemyTableSet(CharacterSyu.FireElement, Target.x, Target.y, Target.muki);
+		Target.kill();
 	}
 }

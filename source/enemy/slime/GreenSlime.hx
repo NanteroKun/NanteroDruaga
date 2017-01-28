@@ -8,18 +8,18 @@ import flixel.FlxG;
  */
 class GreenSlime extends Slime
 {
-	public function new(s:Enemy) 
+	public function new(s:Character) 
 	{
 		super(s);
 		waitbase = 255;
 	}
-	override public function GraphicSet(s:Enemy) 
+	override public function GraphicSet() 
 	{
-		s.loadGraphic("assets/images/enemy/slime/greenslime.png", true, 16, 16);
-		super.GraphicSet(s);
+		Target.loadGraphic("assets/images/enemy/slime/greenslime.png", true, 16, 16);
+		super.GraphicSet();
 	}
-	override public function Move(s:Enemy) 
+	override public function Move() 
 	{
-		super.Move(s);
+		super.Move();
 	}
 }

@@ -8,38 +8,38 @@ import floor.Maze;
  */
 class RedWisp extends Wisp
 {
-	public function new(s:Enemy) 
+	public function new(s:Character) 
 	{
 		super(s);
 	}
-	override public function GraphicSet(s:Enemy) 
+	override public function GraphicSet() 
 	{
-		super.GraphicSet(s);
-		s.loadGraphic("assets/images/enemy/wisp/redwisp.png", true, 16, 16);
-		s.animation.add("idle", [0, 1, 2, 3], 30, true);
-		s.animation.play("idle");
+		super.GraphicSet();
+		Target.loadGraphic("assets/images/enemy/wisp/redwisp.png", true, 16, 16);
+		Target.animation.add("idle", [0, 1, 2, 3], 30, true);
+		Target.animation.play("idle");
 	}
-	override public function Move(s:Enemy) 
+	override public function Move() 
 	{
-		if ((s.x - 20) % 24 == 0 && (s.y - 36) % 24 == 0 )
+		if ((Target.x - 20) % 24 == 0 && (Target.y - 36) % 24 == 0 )
 		{
 			var cnt:Int = 0;
 			while (true)
 			{
-				if (IdousakiChk(Reg.MigiTurn(s.muki),s.x,s.y))
+				if (IdousakiChk(Reg.MigiTurn(Target.muki),Target.x,Target.y))
 				{
-					s.muki = Reg.MigiTurn(s.muki);
+					Target.muki = Reg.MigiTurn(Target.muki);
 					break;
 				}
 				else
 				{
-					if (IdousakiChk(s.muki,s.x,s.y))
+					if (IdousakiChk(Target.muki,Target.x,Target.y))
 					{
 						break;
 					}
 					else
 					{
-						s.muki = Reg.HidariTurn(s.muki);
+						Target.muki = Reg.HidariTurn(Target.muki);
 					}
 				}
 				cnt++;
@@ -50,6 +50,6 @@ class RedWisp extends Wisp
 				}
 			}
 		}
-		super.Move(s);
+		super.Move();
 	}
 }

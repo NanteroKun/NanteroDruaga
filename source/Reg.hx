@@ -1,6 +1,6 @@
 package;
 import enemy.Enemy;
-import enums.EnemySyu;
+import enums.CharacterSyu;
 import flixel.FlxG;
 import flixel.graphics.frames.FlxBitmapFont;
 import flixel.group.FlxGroup.FlxTypedGroup;
