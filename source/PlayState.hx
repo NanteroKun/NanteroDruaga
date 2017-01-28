@@ -12,13 +12,13 @@ import flixel.FlxState;
 import flixel.graphics.frames.FlxBitmapFont;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import floor.Floor;
-import gil.Gil;
+import player.Player;
 
 class PlayState extends FlxState
 {
 	private var floorcnt:Int;
 	private var background:FlxObject;
-	private var gil:Gil;
+	private var gil:Player;
 	private var enemygroup:FlxTypedGroup<Enemy>;
 	private var cam:FlxCamera;
 	private var GamenUp:GamenUpDisp;
@@ -35,7 +35,7 @@ class PlayState extends FlxState
 		add(ZanTime);
 		background = new Floor();
 		add(background);
-		gil = new Gil();
+		gil = new Player();
 		add(gil);
 		enemygroup = new FlxTypedGroup<Enemy>();
 		enemygroup = Enemy.Init(100);

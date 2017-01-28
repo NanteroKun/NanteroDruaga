@@ -20,7 +20,7 @@ class FireElement extends CharacterMovePattern
 		Target.loadGraphic("assets/images/spell/fireelement.png", true, 16, 16);
 		for (i in 0...4)
 		{
-			Target.animation.add(Std.string(i), [i], 15, false);
+			Target.animation.add(Std.string(i), [i]);
 		}
 		Target.animation.add("s1", [7, 6, 5, 4], 15, false);
 		Target.animation.add("s2", [11, 10, 9, 8], 15, false);

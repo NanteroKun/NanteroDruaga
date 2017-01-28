@@ -25,7 +25,7 @@ import enums.CharacterSyu;
 
 /**
  * ...
- * @author 
+ * @author 敵キャラが死んだ場合スプライトをKillせずにSeizonにFalse（後で生成されるキャラの表示順や宝箱判定のためっす）
  */
 class Enemy extends Character
 {
@@ -69,15 +69,22 @@ class Enemy extends Character
 			case CharacterSyu.BlueKnight:movepattern = new BlueKnight(this);
 			default:trace("ENEMY ja Nai yatsu Dasicha DAMEEEEEEE!!!!");
 		}
+		Seizon = true;
 		movepattern.GraphicSet();
 	}
 	override public function update(elapsed:Float):Void 
 	{
-		super.update(elapsed);
-		movepattern.Move();
+		if (Seizon)
+		{
+			super.update(elapsed);
+			movepattern.Move();
+		}
 	}
 	override public function draw():Void 
 	{
-		super.draw();
+		if (Seizon)
+		{
+			super.draw();
+		}
 	}
 }
