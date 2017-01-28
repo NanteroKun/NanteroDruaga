@@ -14,6 +14,7 @@ class Player extends Character
 		syu = CharacterSyu.Gil;
 		movepattern = new Gil(this);
 		Seizon = true;
+		Reg.GilPos = this;
 	}
 	override public function update(elapsed:Float):Void 
 	{

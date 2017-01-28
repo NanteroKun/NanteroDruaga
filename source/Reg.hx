@@ -24,7 +24,7 @@ class Reg
 	public static var zanki:Int;
 	public static var zantime:Int;
 	public static var score(default, set):Int = 0;
-	public static var GilPos:FlxPoint = FlxPoint.get(0, 0);
+	public static var GilPos:Character;
 	private static function set_score(value:Int):Int
 	{
 		score = value;

@@ -103,7 +103,7 @@ class PlayState extends FlxState
 			{
 				var s = enums.CharacterSyu.RedWispFast;
 				var k:Int = FlxG.random.int(0, 6);
-				//k = 10;
+				k = 10;
 				switch(k)
 				{
 					case 0:temp.Set(enums.CharacterSyu.RedSlime);

@@ -1,12 +1,12 @@
 package enemy.knight;
+import enemy.roper.Roper;
 
 /**
  * ...
  * @author 
  */
-class Knight extends CharacterMovePattern
+class Knight extends Roper
 {
-
 	public function new(s:Character) 
 	{
 		super(s);
@@ -19,10 +19,10 @@ class Knight extends CharacterMovePattern
 	}
 	override public function Move()
 	{
-		super.Move();
 		if ((Target.x - 20) % 24 == 0 && ((Target.y - 36) % 24 == 0))
         {
-			RoperTypeMove();
+			RoperTypeMove();//向き変更
 		}	
+		super.Move();
 	}
 }

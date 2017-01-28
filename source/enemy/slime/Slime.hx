@@ -65,14 +65,12 @@ class Slime extends CharacterMovePattern
 			switch (walkcnt)
 			{
 				case 4, 16, 28:super.Move();
-			}
-			if (walkcnt == 34)
-			{
-				waitcnt = FlxG.random.int(0, waitbase) + 16;
-				if (waitcnt > 255)
-				{
-					waitcnt -= 255;
-				}
+				case 34:
+					waitcnt = FlxG.random.int(0, waitbase) + 16;
+					if (waitcnt > 255)
+					{
+						waitcnt -= 255;
+					}
 			}
 		}
 		if (Reg.gamecount % 256 == 0)

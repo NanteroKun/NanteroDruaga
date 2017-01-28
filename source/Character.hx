@@ -11,7 +11,7 @@ class Character extends FlxSprite
 {
 	public var speed:Float;
 	public var muki:Int;
-	public var syu:enums.CharacterSyu;
+	public var syu:CharacterSyu;
 	private var Seizon:Bool;
 	public var movepattern:CharacterMovePattern;
 	public function new() 
