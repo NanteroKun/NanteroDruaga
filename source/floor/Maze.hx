@@ -108,25 +108,25 @@ class Maze extends FlxObject
 				var temp:Wall;
                 switch (wall[i+ j*17])
                 {
-                    case 0:
+					case 0:
 						temp = new Wall();
 						temp.name = no;
 						temp.loadGraphic(loadgra, false);
 						temp.setPosition((36 + i * 24) , (j * 24 + 35) );
 						walls.add(temp);
-                    case 1:
+					case 1:
 						temp = new Wall();
 						temp.name = no;
 						temp.loadGraphic(loadgra, false);
 						temp.setPosition((43 + i * 24) , (j * 24 + 52) );
-                        walls.add(temp);
-                    case 2:
+						walls.add(temp);
+					case 2:
 						temp = new Wall();
 						temp.name = no;
 						temp.loadGraphic(loadgra, false);
 						temp.setPosition(36 + i * 24 , (j * 24 + 59) );
                         walls.add(temp);
-                    case 3:
+					case 3:
 						temp = new Wall();
 						temp.name = no;
 						temp.loadGraphic(loadgra, false);
