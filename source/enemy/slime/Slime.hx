@@ -16,6 +16,7 @@ class Slime extends CharacterMovePattern
 		waitcnt = FlxG.random.int(0, 255);
 		Target.muki = FlxG.random.int(0, 3);
 		walkcnt = 0;
+		Target.speed = 8;
 		Target.setPosition(Reg.XposSet(), Reg.YposSet());
 	}
 	override public function GraphicSet() 
@@ -63,14 +64,7 @@ class Slime extends CharacterMovePattern
 			walkcnt++;
 			switch (walkcnt)
 			{
-				case 4, 16, 28:
-					switch (Target.muki)
-					{
-						case 0:Target.y -= 8;
-						case 1:Target.x += 8;
-						case 2:Target.y += 8;
-						case 3:Target.x -= 8;
-					}
+				case 4, 16, 28:super.Move();
 			}
 			if (walkcnt == 34)
 			{
@@ -91,7 +85,7 @@ class Slime extends CharacterMovePattern
 	}
 	public function SpellDasu():Void
 	{
-		
+		//各種スライム.hx.SpellDasu()に実際のスペル出す処理、ありまぁ～す
 	}
 }
 	

@@ -19,7 +19,7 @@ class CharacterMovePattern
 	public function GraphicSet()
 	{
 	}
-	public function Move()
+	public function Move()//速度と向きに応じた移動を致します
 	{
 		switch (Target.muki)
 		{

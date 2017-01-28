@@ -8,8 +8,8 @@ class BlackSlime extends Slime
 {
 	public function new(s:Character) 
 	{
-		super(s);
 		waitbase = 63;
+		super(s);
 	}
 	override public function GraphicSet() 
 	{
