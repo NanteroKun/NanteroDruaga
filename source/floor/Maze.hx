@@ -133,60 +133,66 @@ class Maze extends FlxObject
 						temp.setPosition(19 + i * 24 , (j * 24 + 52) );
                         walls.add(temp);
                     default: break;
-                }
-            }
-        }
+				}
+			}
+		}
 	}
 	private function KabeRandom():Int
 	{
 		var A:Int = (randomseed & 255);
-        var B:Int = A;
-        var CY:Int;
-        A = (A & 144);
-        if (A == 144 || A == 0) { CY = 1; } else { CY = 0; }
-        A = B;
-        A *= 2;
-        A += CY;
-        randomseed = A;
-        var kabe:Int = (randomseed & 3);
+		var B:Int = A;
+		var CY:Int;
+		A = (A & 144);
+		if (A == 144 || A == 0) { CY = 1; } else { CY = 0; }
+		A = B;
+		A *= 2;
+		A += CY;
+		randomseed = A;
+		var kabe:Int = (randomseed & 3);
 		return kabe;
 	}
 	private function returnmap2(x:Int, y:Int):Int
-    {
-        if (x < 0 || x > 16 || y < 0 || y > 7)
-        {
-            return 99;   								
-        }
-        return wall2[x+y*17];
-    }
-    private function returnmap(x:Int, y:Int):Int
-    {
-        if (x < 0 || x > 16 || y < 0 || y > 7)
-        {
-            return 99;
-        }
-        return wall[x+ y*17];
-    }
+	{
+		if (x < 0 || x > 16 || y < 0 || y > 7)
+		{
+			return 99;   								
+		}
+		return wall2[x+y*17];
+	}
+	private function returnmap(x:Int, y:Int):Int
+	{
+		if (x < 0 || x > 16 || y < 0 || y > 7)
+		{
+			return 99;
+		}
+		return wall[x+ y*17];
+	}
 	public static function WallReturn(x:Int, y:Int):Int
-    {
-        if (x < 0 || x > 16 || y < 0 || y > 7)
-        {
-            return 99;
-        }
-        return wall[x+ y*17];
-    }
+	{
+		if (x < 0 || x > 16 || y < 0 || y > 7)
+		{
+			return 99;
+		}
+		return wall[x+ y*17];
+	}
+	/**
+	 * 
+	 * @param	x 座標と向きを入れるとそこの壁を壊してくれるというやつ
+	 * @param	y
+	 * @param	muki
+	 */
 	public static function WallDel(x:Int, y:Int,muki:Int):Void
 	{
 		switch (muki)
-        {
-            case 0:
-                if (WallReturn(x, y - 1) == 3) { WallObjectKesu(x, y - 1); return; }
-                if (WallReturn(x - 1, y - 1) == 1) { WallObjectKesu(x - 1, y - 1); return; }
-            case 1:
-                if (WallReturn(x, y - 1) == 2) { WallObjectKesu(x, y - 1); return; }
-                if (WallReturn(x, y) == 0) { WallObjectKesu(x, y); return; }
-            case 2:
-                if (WallReturn(x, y) == 3) { WallObjectKesu(x, y); return; }
+		{
+			case 0:
+				if (WallReturn(x, y - 1) == 3) { WallObjectKesu(x, y - 1); return; }
+				if (WallReturn(x - 1, y - 1) == 1) { WallObjectKesu(x - 1, y - 1); return; }
+			case 1:
+				if (WallReturn(x, y - 1) == 2) { WallObjectKesu(x, y - 1); return; }
+				if (WallReturn(x, y) == 0) { WallObjectKesu(x, y); return; }
+			case 2:
+				if (WallReturn(x, y) == 3) { WallObjectKesu(x, y); return; }
                 if (WallReturn(x - 1, y) == 1) { WallObjectKesu(x - 1, y); return; }
             case 3:
                 if (WallReturn(x - 1, y - 1) == 2) { WallObjectKesu(x - 1, y - 1); return ; }
