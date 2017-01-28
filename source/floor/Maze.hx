@@ -74,8 +74,8 @@ class Maze extends FlxObject
 					if (kabe == 1 && returnmap(x1 + 1,y1) != -1) { wall[x1+ y1*17] = kabe; break; }
 					if (kabe == 2 && returnmap(x1, (y1 + 1)) != -1) { wall[x1+ y1*17] = kabe; break; }
 					if (kabe == 3 && returnmap(x1 - 1, y1) != -1) { wall[x1+ y1*17] = kabe; break; }
-                    wall[x1+ y1*17] = kabe;    //壁ではなかった。現在位置に壁セット
-                    wall2[x1+ y1*17] = kabe;   //現在進行中の柱にもセット
+					wall[x1+ y1*17] = kabe;    //壁ではなかった。現在位置に壁セット
+					wall2[x1+ y1*17] = kabe;   //現在進行中の柱にもセット
                     switch (kabe)               //次の柱に移動
 					{
 						case 0: y1--; 
@@ -90,23 +90,23 @@ class Maze extends FlxObject
 		}
 		var k:Int  = 0;
 		var loadgra:String;
-        for (i in 0...17)
-        {
-            for (j in 0...8)
-            {
-                k++;
-                if (wall[i+ j*17] == 0 || wall[i+ j*17] == 2)
-                {
-                    loadgra = "assets/images/wall/Tatehashira.png";
-                }
-                else
-                {
-                    loadgra = "assets/images/wall/Yokohashira.png";
-                }
+		for (i in 0...17)
+		{
+			for (j in 0...8)
+			{
+				k++;
+				if (wall[i+ j*17] == 0 || wall[i+ j*17] == 2)
+				{
+					loadgra = "assets/images/wall/Tatehashira.png";
+				}
+				else
+				{
+					loadgra = "assets/images/wall/Yokohashira.png";
+				}
 				var no:String = Std.string(i)+Std.string(j);
 				var temp:Wall;
-                switch (wall[i+ j*17])
-                {
+				switch (wall[i+ j*17])
+				{
 					case 0:
 						temp = new Wall();
 						temp.name = no;
@@ -124,14 +124,14 @@ class Maze extends FlxObject
 						temp.name = no;
 						temp.loadGraphic(loadgra, false);
 						temp.setPosition(36 + i * 24 , (j * 24 + 59) );
-                        walls.add(temp);
+						walls.add(temp);
 					case 3:
 						temp = new Wall();
 						temp.name = no;
 						temp.loadGraphic(loadgra, false);
 						temp.setPosition(19 + i * 24 , (j * 24 + 52) );
-                        walls.add(temp);
-                    default: break;
+						walls.add(temp);
+					default: break;
 				}
 			}
 		}
