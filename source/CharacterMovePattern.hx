@@ -2,7 +2,7 @@ package;
 import enemy.Enemy;
 import flixel.FlxG;
 import flixel.FlxSprite;
-import floor.Maze;
+import floorfolder.Maze;
 
 /**
  * ...

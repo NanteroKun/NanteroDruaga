@@ -1,4 +1,4 @@
-package floor;
+package floorfolder;
 
 import flixel.FlxSprite;
 import flixel.system.FlxAssets.FlxGraphicAsset;

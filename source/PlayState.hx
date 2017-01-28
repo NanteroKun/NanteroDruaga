@@ -11,7 +11,7 @@ import flixel.FlxObject;
 import flixel.FlxState;
 import flixel.graphics.frames.FlxBitmapFont;
 import flixel.group.FlxGroup.FlxTypedGroup;
-import floor.Floor;
+import floorfolder.Floor;
 import player.Player;
 
 class PlayState extends FlxState

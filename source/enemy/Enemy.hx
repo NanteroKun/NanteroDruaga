@@ -74,11 +74,7 @@ class Enemy extends Character
 	}
 	override public function update(elapsed:Float):Void 
 	{
-		if (Seizon)
-		{
-			super.update(elapsed);
-			movepattern.Move();
-		}
+		super.update(elapsed);
 	}
 	override public function draw():Void 
 	{

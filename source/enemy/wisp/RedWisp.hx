@@ -1,6 +1,6 @@
 package enemy.wisp;
 import flixel.FlxSprite;
-import floor.Maze;
+import floorfolder.Maze;
 
 /**
  * ...

@@ -1,5 +1,5 @@
 package enemy.spell;
-import floor.Maze;
+import floorfolder.Maze;
 
 /**
  * ...

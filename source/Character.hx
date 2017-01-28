@@ -18,4 +18,19 @@ class Character extends FlxSprite
 	{
 		super();
 	}
+	override public function update(elapsed:Float):Void 
+	{
+		if (Seizon)
+		{
+			movepattern.Move();
+			super.update(elapsed);
+		}
+	}
+	override public function draw():Void 
+	{
+		if (Seizon)
+		{
+			super.draw();
+		}
+	}
 }

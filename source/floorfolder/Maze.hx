@@ -1,4 +1,4 @@
-package floor;
+package floorfolder;
 import flixel.FlxObject;
 import flixel.group.FlxGroup.FlxTypedGroup;
 

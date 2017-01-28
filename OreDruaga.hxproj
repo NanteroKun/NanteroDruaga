@@ -20,7 +20,7 @@
     <class path="E:\HaxeToolkit\flixel\lime\2,9,1" />
     <class path="source" />
     <class path="e:\HaxeToolkit\flixel\openfl\3,6,1\extern" />
-    <class path="export\windows\neko\haxe" />
+    <class path="export\windows\cpp\haxe" />
   </classpaths>
   <!-- Build options -->
   <build>

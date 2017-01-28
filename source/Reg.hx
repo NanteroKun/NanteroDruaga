@@ -5,7 +5,7 @@ import flixel.FlxG;
 import flixel.graphics.frames.FlxBitmapFont;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxPoint;
-import floor.Maze;
+import floorfolder.Maze;
 
 /**
  * ...
