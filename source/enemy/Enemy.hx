@@ -17,6 +17,7 @@ import enemy.wisp.BlueWispSlow;
 import enemy.wisp.RedWispFast;
 import enemy.wisp.RedWispSlow;
 import flixel.FlxBasic;
+import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.group.FlxGroup.FlxTypedGroup;
@@ -49,6 +50,10 @@ class Enemy extends Character
 	public function Set(s:CharacterSyu)
 	{
 		syu = s;
+		if (FlxG.random.bool(1))
+		{
+			syu = CharacterSyu.Sonota(FakeDoor);
+		}
 		switch(syu)
 		{
 			case CharacterSyu.EnemySyu(BlueWispSlow):movepattern = new BlueWispSlow(this);
@@ -61,12 +66,13 @@ class Enemy extends Character
 			case CharacterSyu.EnemySyu(BlueSlime):movepattern = new BlueSlime(this);
 			case CharacterSyu.EnemySyu(DarkGreenSlime):movepattern = new DarkGreenSlime(this);
 			case CharacterSyu.EnemySyu(DarkYellowSlime):movepattern = new DarkYellowSlime(this);
-			case CharacterSyu.EnemySyu(WhiteSpell):movepattern = new WhiteSpell(this); trace("shiro");
+			case CharacterSyu.EnemySyu(WhiteSpell):movepattern = new WhiteSpell(this); 
 			case CharacterSyu.EnemySyu(BlueSpell):movepattern = new BlueSpell(this);
 			case CharacterSyu.EnemySyu(RedSpell):movepattern = new RedSpell(this);
 			case CharacterSyu.EnemySyu(GreenSpell):movepattern = new GreenSpell(this);
 			case CharacterSyu.EnemySyu(FireElement):movepattern = new FireElement(this);
 			case CharacterSyu.EnemySyu(BlueKnight):movepattern = new BlueKnight(this);
+			case CharacterSyu.Sonota(sonota):  trace("sonota");
 			default:trace("ENEMY ja Nai yatsu Dasicha DAMEEEEEEE!!!!");
 		}
 		Seizon = true;

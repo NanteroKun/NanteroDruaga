@@ -63,7 +63,6 @@ class PlayState extends FlxState
 		Reg.zantime-= 1;
 		if (FlxG.keys.pressed.ESCAPE){FlxG.resetState(); }
 		EnemyTsuika();
-		trace(enemygroup.countLiving());
 	}
 	override public function draw():Void 
 	{
@@ -82,7 +81,7 @@ class PlayState extends FlxState
 				if (TsuikaEnemy.EnemyBorn[i].wait == 0)
 				{
 					EnemyUmu(TsuikaEnemy.EnemyBorn[i].syu, TsuikaEnemy.EnemyBorn[i].x, TsuikaEnemy.EnemyBorn[i].y, TsuikaEnemy.EnemyBorn[i].m);
-					trace(TsuikaEnemy.EnemyBorn[i].syu);
+				//	trace(TsuikaEnemy.EnemyBorn[i].syu);
 					TsuikaEnemy.EnemyBorn[i].syu = CharacterSyu.No;
 				}
 			}
@@ -102,14 +101,14 @@ class PlayState extends FlxState
 	}
 	private function EnemySet(floor:Int):Void
 	{
-		for (i in 0...5)
+		for (i in 0...50)
 		{
 				var s = CharacterSyu.EnemySyu(RedSlime);
 				var k:Int = FlxG.random.int(0, 10);
 				k = 0;
 				switch(k)
 				{
-					case 0:TsuikaEnemy.TsuikaEnemyTableSet(CharacterSyu.EnemySyu(RedSlime), 0, 0, 0, 600 + FlxG.random.int(0, 100));
+					case 0:TsuikaEnemy.TsuikaEnemyTableSet(CharacterSyu.EnemySyu(RedSlime), 0, 0, 0, 60 + FlxG.random.int(0, 100));
 					/*
 					case 1:temp.Set(CharacterSyu.EnemySyu(BlackSlime));
 					case 2:temp.Set(CharacterSyu.EnemySyu(GreenSlime));
@@ -122,6 +121,7 @@ class PlayState extends FlxState
 					case 8:temp.Set(CharacterSyu.EnemySyu(RedWispFast));
 					case 9:temp.Set(CharacterSyu.EnemySyu(RedWispSlow));
 					case 10:temp.Set(CharacterSyu.EnemySyu(BlueKnight));
+					
 					*/
 				}
 		}
