@@ -8,14 +8,18 @@ enum CharacterSyu
 	No; 
 	Gil;
 	EnemySyu(enemy:EnemySyu);
+	SpellSyu(jumon:SpellSyu);
 	Sonota(sonota:Sonota);
 }
 enum EnemySyu
 {
-	WhiteSpell; BlueSpell; RedSpell; GreenSpell; FireElement;
 	BlueWispSlow; BlueWispFast; RedWispSlow; RedWispFast;
 	GreenSlime; BlackSlime; RedSlime; BlueSlime; DarkGreenSlime; DarkYellowSlime;
 	BlueKnight; BlackKnight; MirrorKnight; HyperKnight; LizMan; RedKnight;
+}
+enum SpellSyu
+{
+	WhiteSpell; BlueSpell; RedSpell; GreenSpell; FireElement;
 }
 enum Sonota
 {

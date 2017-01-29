@@ -7,11 +7,9 @@ import enums.CharacterSyu;
  */
 class RedSpell extends Spell
 {
-	private var firstframe:Bool;
 	public function new(s:Character) 
 	{
 		super(s);
-		firstframe = true;
 	}
 	override public function GraphicSet() 
 	{
@@ -35,12 +33,11 @@ class RedSpell extends Spell
 				}
 			}
 		}
-		firstframe = false;
 		super.Move();
 	}
 	private function element():Void
 	{
-		TsuikaEnemy.TsuikaEnemyTableSet(CharacterSyu.EnemySyu(FireElement), Target.x, Target.y, Target.muki,0);
+		TsuikaEnemy.TsuikaEnemyTableSet(CharacterSyu.SpellSyu(FireElement), Target.x, Target.y, Target.muki,0);
 		Target.kill();
 	}
 }

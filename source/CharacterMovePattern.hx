@@ -29,7 +29,10 @@ class CharacterMovePattern
 			case 3:Target.x -= Target.speed;
 		}
 	}
-	
+	public function nisedraw()
+	{
+		Target.nisedraw();
+	}
 	/**
 	 * 
 	 * @param	karimuki チェックする方向

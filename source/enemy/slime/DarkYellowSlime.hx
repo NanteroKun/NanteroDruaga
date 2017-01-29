@@ -29,10 +29,10 @@ class DarkYellowSlime extends Slime
 		var k:Int = FlxG.random.int(0, 3);
 		switch (k)
 		{
-			case 0:syuu = CharacterSyu.EnemySyu(WhiteSpell);
-			case 1:syuu = CharacterSyu.EnemySyu(BlueSpell);
-			case 2:syuu = CharacterSyu.EnemySyu(RedSpell);
-			case 3:syuu = CharacterSyu.EnemySyu(GreenSpell);
+			case 0:syuu = CharacterSyu.SpellSyu(WhiteSpell);
+			case 1:syuu = CharacterSyu.SpellSyu(BlueSpell);
+			case 2:syuu = CharacterSyu.SpellSyu(RedSpell);
+			case 3:syuu = CharacterSyu.SpellSyu(GreenSpell);
 		}
 		TsuikaEnemy.TsuikaEnemyTableSet(syuu, Target.x, Target.y, Target.muki,0);
 	}

@@ -6,10 +6,12 @@ package enemy.spell;
  */
 class Spell extends CharacterMovePattern
 {
+	public var firstframe:Bool;
 	public function new(s:Character)                  
 	{
 		super(s);
-		s.speed = 4;
+		Target.speed = 4;
+		firstframe = true;
 	}
 	override public function GraphicSet() 
 	{
@@ -25,4 +27,16 @@ class Spell extends CharacterMovePattern
 	{
 		super.Move();
 	}
+	override public function nisedraw() 
+	{
+		if (firstframe)
+		{
+			firstframe = false;
+		}
+		else
+		{
+			super.nisedraw();
+		}
+	}
+	
 }

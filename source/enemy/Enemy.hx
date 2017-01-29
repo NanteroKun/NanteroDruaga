@@ -1,21 +1,9 @@
 package enemy;
 
 import enemy.knight.BlueKnight;
-import enemy.slime.BlackSlime;
-import enemy.slime.BlueSlime;
-import enemy.slime.DarkGreenSlime;
-import enemy.slime.DarkYellowSlime;
-import enemy.slime.GreenSlime;
-import enemy.slime.RedSlime;
-import enemy.spell.BlueSpell;
-import enemy.spell.FireElement;
-import enemy.spell.GreenSpell;
-import enemy.spell.RedSpell;
-import enemy.spell.WhiteSpell;
-import enemy.wisp.BlueWispFast;
-import enemy.wisp.BlueWispSlow;
-import enemy.wisp.RedWispFast;
-import enemy.wisp.RedWispSlow;
+import enemy.slime.*;
+import enemy.spell.*;
+import enemy.wisp.*;
 import flixel.FlxBasic;
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -52,7 +40,7 @@ class Enemy extends Character
 		syu = s;
 		if (FlxG.random.bool(1))
 		{
-			syu = CharacterSyu.Sonota(FakeDoor);
+			//syu = CharacterSyu.Sonota(FakeDoor);
 		}
 		switch(syu)
 		{
@@ -66,13 +54,13 @@ class Enemy extends Character
 			case CharacterSyu.EnemySyu(BlueSlime):movepattern = new BlueSlime(this);
 			case CharacterSyu.EnemySyu(DarkGreenSlime):movepattern = new DarkGreenSlime(this);
 			case CharacterSyu.EnemySyu(DarkYellowSlime):movepattern = new DarkYellowSlime(this);
-			case CharacterSyu.EnemySyu(WhiteSpell):movepattern = new WhiteSpell(this); 
-			case CharacterSyu.EnemySyu(BlueSpell):movepattern = new BlueSpell(this);
-			case CharacterSyu.EnemySyu(RedSpell):movepattern = new RedSpell(this);
-			case CharacterSyu.EnemySyu(GreenSpell):movepattern = new GreenSpell(this);
-			case CharacterSyu.EnemySyu(FireElement):movepattern = new FireElement(this);
+			case CharacterSyu.SpellSyu(WhiteSpell):movepattern = new WhiteSpell(this); 
+			case CharacterSyu.SpellSyu(BlueSpell):movepattern = new BlueSpell(this);
+			case CharacterSyu.SpellSyu(RedSpell):movepattern = new RedSpell(this);
+			case CharacterSyu.SpellSyu(GreenSpell):movepattern = new GreenSpell(this);
+			case CharacterSyu.SpellSyu(FireElement):movepattern = new FireElement(this);
 			case CharacterSyu.EnemySyu(BlueKnight):movepattern = new BlueKnight(this);
-			case CharacterSyu.Sonota(sonota):  trace("sonota");
+		//	case CharacterSyu.Sonota(sonota):  trace("sonota");この書き方でsonotaを全部纏められる。素敵やん
 			default:trace("ENEMY ja Nai yatsu Dasicha DAMEEEEEEE!!!!");
 		}
 		Seizon = true;
@@ -84,9 +72,6 @@ class Enemy extends Character
 	}
 	override public function draw():Void 
 	{
-		if (Seizon)
-		{
-			super.draw();
-		}
+		movepattern.nisedraw();
 	}
 }

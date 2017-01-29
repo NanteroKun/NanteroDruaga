@@ -24,6 +24,6 @@ class BlueSlime extends Slime
 	override public function SpellDasu():Void 
 	{
 		super.SpellDasu();
-		TsuikaEnemy.TsuikaEnemyTableSet(CharacterSyu.EnemySyu(BlueSpell), Target.x, Target.y, Target.muki,0);
+		TsuikaEnemy.TsuikaEnemyTableSet(CharacterSyu.SpellSyu(BlueSpell), Target.x, Target.y, Target.muki,0);
 	}
 }

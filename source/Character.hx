@@ -1,5 +1,6 @@
 package;
 
+import enemy.spell.Spell;
 import enums.CharacterSyu;
 import flixel.FlxSprite;
 
@@ -12,6 +13,7 @@ class Character extends FlxSprite
 	public var speed:Float;
 	public var muki:Int;
 	public var syu:CharacterSyu;//
+	public var firstframe:Bool;
 	private var Seizon:Bool;
 	public var movepattern:CharacterMovePattern;
 	public function new() 
@@ -26,11 +28,31 @@ class Character extends FlxSprite
 			super.update(elapsed);
 		}
 	}
-	override public function draw():Void 
+	public function nisedraw():Void
 	{
 		if (Seizon)
 		{
 			super.draw();
 		}
 	}
+	/*
+	override public function draw():Void 
+	{
+		if (Seizon)
+		{
+			if (firstframe)
+			{
+				switch (syu)
+				{
+					case CharacterSyu.SpellSyu(jumon):firstframe = false;
+					default:super.draw();
+				}
+			}
+			else
+			{
+				super.draw();
+			}
+		}
+	}
+	*/
 }

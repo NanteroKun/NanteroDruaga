@@ -24,6 +24,6 @@ class DarkGreenSlime extends Slime
 	override public function SpellDasu():Void 
 	{
 		super.SpellDasu();
-		TsuikaEnemy.TsuikaEnemyTableSet(CharacterSyu.EnemySyu(GreenSpell), Target.x, Target.y, Target.muki,0);
+		TsuikaEnemy.TsuikaEnemyTableSet(CharacterSyu.SpellSyu(GreenSpell), Target.x, Target.y, Target.muki,0);
 	}
 }
