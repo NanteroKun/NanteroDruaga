@@ -40,7 +40,7 @@ class RedSpell extends Spell
 	}
 	private function element():Void
 	{
-		TsuikaEnemy.TsuikaEnemyTableSet(CharacterSyu.FireElement, Target.x, Target.y, Target.muki);
+		TsuikaEnemy.TsuikaEnemyTableSet(CharacterSyu.EnemySyu(FireElement), Target.x, Target.y, Target.muki,0);
 		Target.kill();
 	}
 }

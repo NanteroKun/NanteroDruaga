@@ -51,22 +51,22 @@ class Enemy extends Character
 		syu = s;
 		switch(syu)
 		{
-			case CharacterSyu.BlueWispSlow:movepattern = new BlueWispSlow(this);
-			case CharacterSyu.BlueWispFast:movepattern = new BlueWispFast(this);
-			case CharacterSyu.RedWispFast:movepattern = new RedWispFast(this);
-			case CharacterSyu.RedWispSlow:movepattern = new RedWispSlow(this);
-			case CharacterSyu.GreenSlime:movepattern = new GreenSlime(this);
-			case CharacterSyu.RedSlime:movepattern = new RedSlime(this);
-			case CharacterSyu.BlackSlime:movepattern = new BlackSlime(this);
-			case CharacterSyu.BlueSlime:movepattern = new BlueSlime(this);
-			case CharacterSyu.DarkGreenSlime:movepattern = new DarkGreenSlime(this);
-			case CharacterSyu.DarkYellowSlime:movepattern = new DarkYellowSlime(this);
-			case CharacterSyu.WhiteSpell:movepattern = new WhiteSpell(this);
-			case CharacterSyu.BlueSpell:movepattern = new BlueSpell(this);
-			case CharacterSyu.RedSpell:movepattern = new RedSpell(this);
-			case CharacterSyu.GreenSpell:movepattern = new GreenSpell(this);
-			case CharacterSyu.FireElement:movepattern = new FireElement(this);
-			case CharacterSyu.BlueKnight:movepattern = new BlueKnight(this);
+			case CharacterSyu.EnemySyu(BlueWispSlow):movepattern = new BlueWispSlow(this);
+			case CharacterSyu.EnemySyu(BlueWispFast):movepattern = new BlueWispFast(this);
+			case CharacterSyu.EnemySyu(RedWispFast):movepattern = new RedWispFast(this);
+			case CharacterSyu.EnemySyu(RedWispSlow):movepattern = new RedWispSlow(this);
+			case CharacterSyu.EnemySyu(GreenSlime):movepattern = new GreenSlime(this);
+			case CharacterSyu.EnemySyu(RedSlime):movepattern = new RedSlime(this);
+			case CharacterSyu.EnemySyu(BlackSlime):movepattern = new BlackSlime(this);
+			case CharacterSyu.EnemySyu(BlueSlime):movepattern = new BlueSlime(this);
+			case CharacterSyu.EnemySyu(DarkGreenSlime):movepattern = new DarkGreenSlime(this);
+			case CharacterSyu.EnemySyu(DarkYellowSlime):movepattern = new DarkYellowSlime(this);
+			case CharacterSyu.EnemySyu(WhiteSpell):movepattern = new WhiteSpell(this); trace("shiro");
+			case CharacterSyu.EnemySyu(BlueSpell):movepattern = new BlueSpell(this);
+			case CharacterSyu.EnemySyu(RedSpell):movepattern = new RedSpell(this);
+			case CharacterSyu.EnemySyu(GreenSpell):movepattern = new GreenSpell(this);
+			case CharacterSyu.EnemySyu(FireElement):movepattern = new FireElement(this);
+			case CharacterSyu.EnemySyu(BlueKnight):movepattern = new BlueKnight(this);
 			default:trace("ENEMY ja Nai yatsu Dasicha DAMEEEEEEE!!!!");
 		}
 		Seizon = true;

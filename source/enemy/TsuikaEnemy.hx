@@ -7,14 +7,13 @@ import enums.CharacterSyu;
  */
 class TsuikaEnemy
 {
-	public static var EnemyBorn:Array<{syu:CharacterSyu,x:Float,y:Float,m:Int}>;
-	public static var TsuikaEnemyStarCnt:Int = 0;
+	public static var EnemyBorn:Array<{syu:CharacterSyu,x:Float,y:Float,m:Int,wait:Int}>;
 	public static function Init():Void
 	{
-		TsuikaEnemy.EnemyBorn = new Array<{syu:CharacterSyu,x:Float,y:Float,m:Int}>();
+		TsuikaEnemy.EnemyBorn = new Array<{syu:CharacterSyu,x:Float,y:Float,m:Int,wait:Int}>();
 		for (i in 0...100)
 		{
-			TsuikaEnemy.EnemyBorn[i] = {syu:CharacterSyu.No, x:0, y:0, m:99};
+			TsuikaEnemy.EnemyBorn[i] = {syu:CharacterSyu.No, x:0, y:0, m:99,wait:0};
 		}
 	}
 	/**
@@ -23,20 +22,19 @@ class TsuikaEnemy
 	 * @param	px X座標
 	 * @param	py Y座標
 	 * @param	mu 向き
+	 * @param   wa 何フレ後に出現
 	 * @return     成功？失敗？
 	 */
-	public static function TsuikaEnemyTableSet(s:CharacterSyu,px:Float,py:Float,mu:Int):Bool
+	public static function TsuikaEnemyTableSet(s:CharacterSyu,px:Float,py:Float,mu:Int,wa:Int):Bool
 	{
-		for (i in TsuikaEnemyStarCnt...100)
+		for (i in 0...100)
 		{
 			if (EnemyBorn[i].syu == CharacterSyu.No)
 			{
-				EnemyBorn[i] = {syu:s, x:px, y:py, m:mu};
+				EnemyBorn[i] = {syu:s, x:px, y:py, m:mu,wait:wa};
 				return true;
 			}
-			TsuikaEnemyStarCnt++;
 		}
 		return false;
 	}
-	
 }
