@@ -1,6 +1,7 @@
 package enemy.slime;
 import enums.CharacterSyu;
 import flixel.FlxG;
+import typedefs.TsuikaEnemyTable;
 
 /**
  * ...
@@ -34,6 +35,7 @@ class DarkYellowSlime extends Slime
 			case 2:syuu = CharacterSyu.SpellSyu(RedSpell);
 			case 3:syuu = CharacterSyu.SpellSyu(GreenSpell);
 		}
-		TsuikaEnemy.TsuikaEnemyTableSet(syuu, Target.x, Target.y, Target.muki,0);
+		var s:TsuikaEnemyTable={syu:syuu, x:Target.x, y:Target.y, m:Target.muki, wait:0};
+		TsuikaEnemy.TsuikaEnemyTableSet(s);
 	}
 }

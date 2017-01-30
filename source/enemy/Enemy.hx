@@ -72,6 +72,6 @@ class Enemy extends Character
 	}
 	override public function draw():Void 
 	{
-		movepattern.nisedraw();
+		super.draw();
 	}
 }

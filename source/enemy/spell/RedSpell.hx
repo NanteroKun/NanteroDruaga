@@ -1,5 +1,6 @@
 package enemy.spell;
 import enums.CharacterSyu;
+import typedefs.TsuikaEnemyTable;
 
 /**
  * ...
@@ -37,7 +38,8 @@ class RedSpell extends Spell
 	}
 	private function element():Void
 	{
-		TsuikaEnemy.TsuikaEnemyTableSet(CharacterSyu.SpellSyu(FireElement), Target.x, Target.y, Target.muki,0);
+		var s:TsuikaEnemyTable={syu:CharacterSyu.SpellSyu(FireElement), x:Target.x, y:Target.y, m:Target.muki, wait:0};
+		TsuikaEnemy.TsuikaEnemyTableSet(s);
 		Target.kill();
 	}
 }

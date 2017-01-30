@@ -15,6 +15,7 @@ import flixel.graphics.frames.FlxBitmapFont;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import floorfolder.Floor;
 import player.Player;
+import typedefs.TsuikaEnemyTable;
 
 class PlayState extends FlxState
 {
@@ -50,7 +51,7 @@ class PlayState extends FlxState
 		floorcnt = 0;
 		Reg.zantime = 2000;
 		TsuikaEnemy.Init();
-		EnemySet(Reg.floor);
+		FloorStartEnemySet(Reg.floor);
 	}
 	override public function update(elapsed:Float):Void
 	{
@@ -70,22 +71,26 @@ class PlayState extends FlxState
 	}
 	private function EnemyTsuika()
 	{
-		for (i in 0...100)
+		for (e in TsuikaEnemy.EnemyBorn)
 		{
-			if (TsuikaEnemy.EnemyBorn[i].syu != CharacterSyu.No)
+			if (e.syu != CharacterSyu.No)
 			{
-				if (TsuikaEnemy.EnemyBorn[i].wait > 0)
+				if (e.wait > 0)
 				{
-					TsuikaEnemy.EnemyBorn[i].wait--;
+					e.wait--;
 				}
-				if (TsuikaEnemy.EnemyBorn[i].wait == 0)
+				if (e.wait == 0)
 				{
-					EnemyUmu(TsuikaEnemy.EnemyBorn[i].syu, TsuikaEnemy.EnemyBorn[i].x, TsuikaEnemy.EnemyBorn[i].y, TsuikaEnemy.EnemyBorn[i].m);
-				//	trace(TsuikaEnemy.EnemyBorn[i].syu);
-					TsuikaEnemy.EnemyBorn[i].syu = CharacterSyu.No;
+					EnemyUmu(e.syu, e.x, e.y, e.m);
+					e.syu = CharacterSyu.No;
 				}
 			}
 		}
+		TsuikaEnemy.EnemyBorn= TsuikaEnemy.EnemyBorn.filter(function (s:TsuikaEnemyTable):Bool
+		{
+			return s.syu != CharacterSyu.No;
+		});
+		trace(TsuikaEnemy.EnemyBorn.length);
 	}
 	private function EnemyUmu(syu:CharacterSyu, x:Float, y:Float, m:Int):Void
 	{
@@ -99,16 +104,17 @@ class PlayState extends FlxState
 			temp.revive();
 		}
 	}
-	private function EnemySet(floor:Int):Void
+	private function FloorStartEnemySet(floor:Int):Void
 	{
-		for (i in 0...50)
+		for (i in 0...25)
 		{
 				var s = CharacterSyu.EnemySyu(RedSlime);
 				var k:Int = FlxG.random.int(0, 10);
 				k = 0;
+				var s:TsuikaEnemyTable={syu:CharacterSyu.No, x:0, y:0, m:0, wait:0};
 				switch(k)
 				{
-					case 0:TsuikaEnemy.TsuikaEnemyTableSet(CharacterSyu.EnemySyu(RedSlime), 0, 0, 0, 60 + FlxG.random.int(0, 100));
+					case 0:s = {syu:CharacterSyu.EnemySyu(RedSlime), x:0, y:0, m:0, wait:90};
 					/*
 					case 1:temp.Set(CharacterSyu.EnemySyu(BlackSlime));
 					case 2:temp.Set(CharacterSyu.EnemySyu(GreenSlime));
@@ -123,6 +129,10 @@ class PlayState extends FlxState
 					case 10:temp.Set(CharacterSyu.EnemySyu(BlueKnight));
 					
 					*/
+				}
+				if (s.syu != CharacterSyu.No)
+				{
+					TsuikaEnemy.TsuikaEnemyTableSet(s);
 				}
 		}
 	}

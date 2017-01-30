@@ -2,6 +2,7 @@ package enemy.slime;
 import enemy.spell.Spell;
 import enemy.spell.WhiteSpell;
 import enums.CharacterSyu;
+import typedefs.TsuikaEnemyTable;
 
 /**
  * ...
@@ -26,6 +27,7 @@ class RedSlime extends Slime
 	override public function SpellDasu():Void 
 	{
 		super.SpellDasu();
-		TsuikaEnemy.TsuikaEnemyTableSet(CharacterSyu.SpellSyu(WhiteSpell), Target.x, Target.y, Target.muki,0);
+		var s:TsuikaEnemyTable={syu:CharacterSyu.SpellSyu(WhiteSpell), x:Target.x, y:Target.y, m:Target.muki, wait:0};
+		TsuikaEnemy.TsuikaEnemyTableSet(s);
 	}
 }

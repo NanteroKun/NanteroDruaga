@@ -28,31 +28,15 @@ class Character extends FlxSprite
 			super.update(elapsed);
 		}
 	}
-	public function nisedraw():Void
-	{
-		if (Seizon)
-		{
-			super.draw();
-		}
-	}
-	/*
 	override public function draw():Void 
 	{
-		if (Seizon)
-		{
-			if (firstframe)
-			{
-				switch (syu)
-				{
-					case CharacterSyu.SpellSyu(jumon):firstframe = false;
-					default:super.draw();
-				}
-			}
-			else
-			{
-				super.draw();
-			}
-		}
+		//自分では描画しない
+		//movepatternさんに制御任せる（点滅とか・・・）
+		movepattern.nisedraw();
 	}
-	*/
+	public function nisedraw():Void
+	{
+		//movepatternさんから戻ってきて描画
+		super.draw();
+	}
 }

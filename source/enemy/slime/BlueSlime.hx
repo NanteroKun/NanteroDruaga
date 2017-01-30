@@ -1,5 +1,6 @@
 package enemy.slime;
 import enums.CharacterSyu;
+import typedefs.TsuikaEnemyTable;
 
 /**
  * ...
@@ -24,6 +25,7 @@ class BlueSlime extends Slime
 	override public function SpellDasu():Void 
 	{
 		super.SpellDasu();
-		TsuikaEnemy.TsuikaEnemyTableSet(CharacterSyu.SpellSyu(BlueSpell), Target.x, Target.y, Target.muki,0);
+		var s:TsuikaEnemyTable={syu:CharacterSyu.SpellSyu(BlueSpell), x:Target.x, y:Target.y, m:Target.muki, wait:0};
+		TsuikaEnemy.TsuikaEnemyTableSet(s);
 	}
 }
