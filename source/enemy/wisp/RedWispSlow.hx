@@ -16,8 +16,8 @@ class RedWispSlow extends RedWisp
 	{
 		super.GraphicSet();
 	}
-	override public function Move() 
+	override public function Move(e:Float) 
 	{
-		super.Move();
+		super.Move(e);
 	}
 }

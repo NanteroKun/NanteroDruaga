@@ -26,7 +26,7 @@ class Slime extends CharacterMovePattern
 		Target.animation.add("purupuru", [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1], 30, false);
 		Target.animation.add("walk", [0, 1, 2, 0, 1, 0, 1, 0, 2, 1, 0, 1, 0, 2, 1, 0, 1], 30, false);
 	}
-	override public function Move() 
+	override public function Move(e:Float) 
 	{
 		//super.Move();スライムは自動では移動しないんですよ
 		if (waitcnt > 0)
@@ -64,7 +64,7 @@ class Slime extends CharacterMovePattern
 			walkcnt++;
 			switch (walkcnt)
 			{
-				case 4, 16, 28:super.Move();
+				case 4, 16, 28:super.Move(e);
 				case 34:
 					waitcnt = FlxG.random.int(0, waitbase) + 16;
 					if (waitcnt > 255)

@@ -23,9 +23,9 @@ class Spell extends CharacterMovePattern
 		Target.animation.add("3", [2, 3], 30, true);
 		Target.animation.play(Std.string(Target.muki));
 	}
-	override public function Move() 
+	override public function Move(e:Float) 
 	{
-		super.Move();
+		super.Move(e);
 	}
 	override public function nisedraw() 
 	{

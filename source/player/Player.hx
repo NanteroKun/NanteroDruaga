@@ -13,6 +13,7 @@ class Player extends Character
 		super();
 		syu = CharacterSyu.Gil;
 		movepattern = new Gil(this);
+		movepattern.GraphicSet();
 		Seizon = true;
 		Reg.GilPos = this;
 	}

@@ -19,7 +19,7 @@ class RedWisp extends Wisp
 		Target.animation.add("idle", [0, 1, 2, 3], 30, true);
 		Target.animation.play("idle");
 	}
-	override public function Move() 
+	override public function Move(e:Float) 
 	{
 		if ((Target.x - 20) % 24 == 0 && (Target.y - 36) % 24 == 0 )
 		{
@@ -50,6 +50,6 @@ class RedWisp extends Wisp
 				}
 			}
 		}
-		super.Move();
+		super.Move(e);
 	}
 }

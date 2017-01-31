@@ -11,7 +11,7 @@ import floorfolder.Maze;
  */
 class CharacterMovePattern
 {
-	private var Target:Character;
+	public var Target:Character;
 	public function new(s:Character) //Targetにs:Character参照渡しで以後Targetに対して操作する
 	{
 		Target = s;
@@ -19,7 +19,7 @@ class CharacterMovePattern
 	public function GraphicSet()
 	{
 	}
-	public function Move()//速度と向きに応じた移動を致します
+	public function Move(e:Float):Void//速度と向きに応じた移動を致します
 	{
 		switch (Target.muki)
 		{

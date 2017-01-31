@@ -20,9 +20,9 @@ class RedSlime extends Slime
 		Target.loadGraphic("assets/images/enemy/slime/redslime.png", true, 16, 16);
 		super.GraphicSet();
 	}
-	override public function Move() 
+	override public function Move(e:Float) 
 	{
-		super.Move();
+		super.Move(e);
 	}
 	override public function SpellDasu():Void 
 	{

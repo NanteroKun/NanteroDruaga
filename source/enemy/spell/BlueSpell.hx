@@ -16,7 +16,7 @@ class BlueSpell extends Spell
 		super.GraphicSet();
 		Target.color = 0x2197ff;
 	}
-	override public function Move() 
+	override public function Move(e:Float) 
 	{
 		if ((Target.x - 20) % 24 == 0 && (Target.y - 36) % 24 == 0 )
 		{
@@ -28,6 +28,6 @@ class BlueSpell extends Spell
 				Target.kill();
 			}
 		}
-		super.Move();
+		super.Move(e);
 	}
 }

@@ -1,6 +1,6 @@
 package enemy;
 
-import enemy.knight.BlueKnight;
+import enemy.knight.*;
 import enemy.slime.*;
 import enemy.spell.*;
 import enemy.wisp.*;

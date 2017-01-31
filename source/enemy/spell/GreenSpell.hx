@@ -15,12 +15,12 @@ class GreenSpell extends Spell
 		super.GraphicSet();
 		Target.color = 0x00de00;
 	}
-	override public function Move() 
+	override public function Move(e:Float) 
 	{
 		if (Target.x<=20|| Target.x >= 428||Target.y<=36||Target.y>=228)
 		{
 			Target.kill();
 		}
-		super.Move();
+		super.Move(e);
 	}
 }

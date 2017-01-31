@@ -27,9 +27,9 @@ class FireElement extends CharacterMovePattern
 		Target.animation.add("s3", [15, 14, 13, 12], 15, false);
 		Target.color = 0xffffff;
 	}
-	override public function Move() 
+	override public function Move(e:Float) 
 	{
-		//super.Move();　ファイヤーエレメントは自動では動かないんですよ
+		//super.Move(e);　ファイヤーエレメントは自動では動かないんですよ
 		if (elementcnt > 0)
 		{
 			var k:Int = Std.int((Reg.gamecount % 16) / 4);

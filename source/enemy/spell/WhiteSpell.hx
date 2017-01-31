@@ -15,7 +15,7 @@ class WhiteSpell extends Spell
 		super.GraphicSet();
 		Target.color = 0xdedede;
 	}
-	override public function Move() 
+	override public function Move(e:Float) 
 	{
 		if ((Target.x - 20) % 24 == 0 && (Target.y - 36) % 24 == 0 )
 		{
@@ -24,6 +24,6 @@ class WhiteSpell extends Spell
 				Target.kill();
 			}
 		}
-		super.Move();
+		super.Move(e);
 	}
 }

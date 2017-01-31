@@ -15,6 +15,7 @@ class TsuikaEnemy
 	{
 		TsuikaEnemy.EnemyBorn = new List<TsuikaEnemyTable>();
 	}
+	
 	/**
 	 * 
 	 * @param	s  生み出す敵の種類 EnemySyu

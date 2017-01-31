@@ -73,6 +73,23 @@ class Reg
 			}
 		}
 	}
+	public inline static function intclamp(value:Int, min:Int, max:Int):Int
+	{
+		if (value < min){
+			return min;
+		}
+		else
+		{
+			if (value > max)
+			{
+				return max;
+			}
+			else 
+			{
+				return value;
+			}
+		}
+	}
 	public inline static function fillSpace(n:Int, digit:Int,?ume:String=" "):String 
 	{
     var str:String = "" + n;

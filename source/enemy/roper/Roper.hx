@@ -11,13 +11,13 @@ class Roper extends CharacterMovePattern
 	{
 		super(s);
 	}
-	override public function Move() 
+	override public function Move(e:Float):Void
 	{
 		if ((Target.x - 20) % 24 == 0 && ((Target.y - 36) % 24 == 0))
 		{
 			RoperTypeMove();//向き変更
 		}	
-		super.Move();
+		super.Move(e);
 	}
 	private function RoperTypeMove():Void
 	{

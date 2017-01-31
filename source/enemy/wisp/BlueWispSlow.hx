@@ -17,8 +17,8 @@ class BlueWispSlow extends BlueWisp
 	{
 		super.GraphicSet();
 	}
-	override public function Move() 
+	override public function Move(e:Float) 
 	{
-		super.Move();
+		super.Move(e);
 	}
 }

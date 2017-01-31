@@ -1,11 +1,11 @@
 package;
 
-import disp.GamenUpDisp;
-import disp.Time;
+import disp.*;
 import enemy.Enemy;
 import enemy.TsuikaEnemy;
 import enemy.slime.*;
-import enemy.wisp.RedWispFast;
+import enemy.wisp.*;
+import enemy.knight.*;
 import enums.CharacterSyu;
 import flixel.FlxCamera;
 import flixel.FlxG;
@@ -86,12 +86,18 @@ class PlayState extends FlxState
 				}
 			}
 		}
-		TsuikaEnemy.EnemyBorn= TsuikaEnemy.EnemyBorn.filter(function (s:TsuikaEnemyTable):Bool
+		TsuikaEnemy.EnemyBorn = TsuikaEnemy.EnemyBorn.filter(function (s:TsuikaEnemyTable):Bool
 		{
 			return s.syu != CharacterSyu.No;
 		});
-		trace(TsuikaEnemy.EnemyBorn.length);
 	}
+	/**
+	 * 
+	 * @param	syu 生み出すキャラクターの種類
+	 * @param	x 生まれる座標
+	 * @param	y
+	 * @param	m 生まれる時の向き
+	 */
 	private function EnemyUmu(syu:CharacterSyu, x:Float, y:Float, m:Int):Void
 	{
 		var temp:Enemy;
@@ -104,31 +110,31 @@ class PlayState extends FlxState
 			temp.revive();
 		}
 	}
+	/**
+	 * 
+	 * @param	floor フロア開始時のキャラクタどものセット
+	 */
 	private function FloorStartEnemySet(floor:Int):Void
 	{
-		for (i in 0...25)
+		for (i in 0...1)
 		{
 				var s = CharacterSyu.EnemySyu(RedSlime);
 				var k:Int = FlxG.random.int(0, 10);
-				k = 0;
-				var s:TsuikaEnemyTable={syu:CharacterSyu.No, x:0, y:0, m:0, wait:0};
+				k = 10;
+				var s:TsuikaEnemyTable = {syu:CharacterSyu.No, x:0, y:0, m:0, wait:0};
 				switch(k)
 				{
-					case 0:s = {syu:CharacterSyu.EnemySyu(RedSlime), x:0, y:0, m:0, wait:90};
-					/*
-					case 1:temp.Set(CharacterSyu.EnemySyu(BlackSlime));
-					case 2:temp.Set(CharacterSyu.EnemySyu(GreenSlime));
-					case 3:temp.Set(CharacterSyu.EnemySyu(BlueSlime));
-					case 4:temp.Set(CharacterSyu.EnemySyu(DarkGreenSlime));
-					case 5:temp.Set(CharacterSyu.EnemySyu(DarkYellowSlime));
-					
-					case 6:temp.Set(CharacterSyu.EnemySyu(BlueWispFast));
-					case 7:temp.Set(CharacterSyu.EnemySyu(BlueWispSlow));
-					case 8:temp.Set(CharacterSyu.EnemySyu(RedWispFast));
-					case 9:temp.Set(CharacterSyu.EnemySyu(RedWispSlow));
-					case 10:temp.Set(CharacterSyu.EnemySyu(BlueKnight));
-					
-					*/
+					case 0:s = {syu:CharacterSyu.EnemySyu(RedSlime), x:0, y:0, m:0, wait:0};
+					case 1:s = {syu:CharacterSyu.EnemySyu(BlackSlime), x:0, y:0, m:0, wait:0};
+					case 2:s = {syu:CharacterSyu.EnemySyu(GreenSlime), x:0, y:0, m:0, wait:0};
+					case 3:s = {syu:CharacterSyu.EnemySyu(BlueSlime), x:0, y:0, m:0, wait:0};
+					case 4:s = {syu:CharacterSyu.EnemySyu(DarkGreenSlime), x:0, y:0, m:0, wait:0};
+					case 5:s = {syu:CharacterSyu.EnemySyu(DarkYellowSlime), x:0, y:0, m:0, wait:0};
+					case 6:s = {syu:CharacterSyu.EnemySyu(BlueWispFast), x:0, y:0, m:0, wait:0};
+					case 7:s = {syu:CharacterSyu.EnemySyu(BlueWispSlow), x:0, y:0, m:0, wait:0};
+					case 8:s = {syu:CharacterSyu.EnemySyu(RedWispFast), x:0, y:0, m:0, wait:0};
+					case 9:s = {syu:CharacterSyu.EnemySyu(RedWispSlow), x:0, y:0, m:0, wait:0};
+					case 10:s = {syu:CharacterSyu.EnemySyu(BlueKnight), x:0, y:0, m:0, wait:0};
 				}
 				if (s.syu != CharacterSyu.No)
 				{

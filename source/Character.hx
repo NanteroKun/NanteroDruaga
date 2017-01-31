@@ -24,7 +24,7 @@ class Character extends FlxSprite
 	{
 		if (Seizon)
 		{
-			movepattern.Move();
+			movepattern.Move(elapsed);
 			super.update(elapsed);
 		}
 	}
@@ -37,6 +37,11 @@ class Character extends FlxSprite
 	public function nisedraw():Void
 	{
 		//movepatternさんから戻ってきて描画
+		var sx:Float = x;
+		var sy:Float = y;
+		x = Std.int(x);
+		y = Std.int(y);
 		super.draw();
+		x = sx; y = sy;
 	}
 }
