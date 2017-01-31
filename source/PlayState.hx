@@ -116,11 +116,11 @@ class PlayState extends FlxState
 	 */
 	private function FloorStartEnemySet(floor:Int):Void
 	{
-		for (i in 0...1)
+		for (i in 0...50)
 		{
 				var s = CharacterSyu.EnemySyu(RedSlime);
-				var k:Int = FlxG.random.int(0, 10);
-				k = 10;
+				var k:Int = FlxG.random.int(0, 15);
+			//	k = 15;
 				var s:TsuikaEnemyTable = {syu:CharacterSyu.No, x:0, y:0, m:0, wait:0};
 				switch(k)
 				{
@@ -135,6 +135,11 @@ class PlayState extends FlxState
 					case 8:s = {syu:CharacterSyu.EnemySyu(RedWispFast), x:0, y:0, m:0, wait:0};
 					case 9:s = {syu:CharacterSyu.EnemySyu(RedWispSlow), x:0, y:0, m:0, wait:0};
 					case 10:s = {syu:CharacterSyu.EnemySyu(BlueKnight), x:0, y:0, m:0, wait:0};
+					case 11:s = {syu:CharacterSyu.EnemySyu(BlackKnight), x:0, y:0, m:0, wait:0};
+					case 12:s = {syu:CharacterSyu.EnemySyu(MirrorKnight), x:0, y:0, m:0, wait:0};
+					case 13:s = {syu:CharacterSyu.EnemySyu(RedKnight), x:0, y:0, m:0, wait:0};
+					case 14:s = {syu:CharacterSyu.EnemySyu(HyperKnight), x:0, y:0, m:0, wait:0};
+					case 15:s = {syu:CharacterSyu.EnemySyu(LizardMan), x:0, y:0, m:0, wait:0};
 				}
 				if (s.syu != CharacterSyu.No)
 				{

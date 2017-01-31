@@ -7,6 +7,8 @@ import flixel.FlxG;
  */
 class Roper extends CharacterMovePattern
 {
+	public var recovery1:Int;
+	public var recovery2:Int;
 	public function new(s:Character) 
 	{
 		super(s);

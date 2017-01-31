@@ -5,6 +5,7 @@ import flixel.FlxSprite;
 import flixel.math.FlxPoint;
 import flixel.system.FlxAssets.FlxGraphicAsset;
 import flixel.util.FlxSpriteUtil;
+import floorfolder.Maze;
 
 /**
  * ...
@@ -21,7 +22,8 @@ class Gil extends Knight
 		Target.muki = 2;
 		sword = new FlxSprite();
 		shield = new FlxSprite();
-		kenfuricnt = 3;
+		swordcnt = 3;
+		swordmuki =-1;
 		kenfurispeed = 7;
 	}
 	override function GraphicSet():Void 
@@ -45,6 +47,7 @@ class Gil extends Knight
 	}
 	override public function Move(e:Float) 
 	{
+		var isZkey:Bool = false;
 		var idoumuki:Int =-1;
 		if(FlxG.keys.pressed.LEFT) {
             idoumuki=3;
@@ -59,7 +62,7 @@ class Gil extends Knight
             idoumuki = 2;
         }
 		direct.set(0, 0);
-		switch(idoumuki)
+		switch(idoumuki) 					
 		{
 			case 0:walkcnt++; if (UeMoveChk(Target.x, Target.y)){direct.y =-1; }
 			case 1:walkcnt++; if (MigiMoveChk(Target.x,Target.y)){direct.x=1; }
@@ -69,12 +72,60 @@ class Gil extends Knight
 		}
 		Target.x += direct.x * Target.speed;
 		Target.y += direct.y * Target.speed;
-		var s:Int = Target.muki*2;
-		if (walkcnt % 8 > 3)
+		if (FlxG.keys.pressed.Z) 
 		{
-			s++;
+			isZkey = true;
+            if (swordcnt == 0)
+			{
+				swordcnt = 1;
+				swordmuki = 1;
+				kenfuricnt = 0;
+				//マトック持っとる前提でーす！
+				if (idoumuki == -1)
+				{
+					if ((Target.x - 20) % 24 == 0 && (Target.y - 36) % 24 == 0 )
+					{
+						if (!IdousakiChk(Target.muki, Target.x, Target.y))
+						{
+							var px:Int = Std.int((Target.x - 20) / 24);
+							var py:Int = Std.int((Target.y - 36) / 24);
+							Maze.WallDel(px, py, Target.muki);
+						}
+					}
+				}
+			}
+        }
+		if (swordcnt != 0)
+		{
+			kenfuricnt++;
+			if (kenfuricnt >= kenfurispeed)
+			{
+				kenfuricnt = 0;
+				swordcnt += swordmuki;
+				if (swordcnt == 1 && isZkey && swordmuki ==-1)
+				{
+					swordmuki = 1;
+				}
+				if (swordcnt == 6 && swordmuki == 1)
+				{
+					if (isZkey)
+					{
+						swordcnt = 7;
+					}
+					else
+					{
+						swordmuki =-1;
+					}
+				}
+			}
 		}
-		Target.animation.play(Std.string(s));
+		if (swordcnt == 7 && !isZkey)
+		{
+			swordcnt = 5; 
+			swordmuki =-1; 
+			kenfuricnt = 0;
+		}
+		swordcnt = Reg.intclamp(swordcnt, 0, 7);
 		KnightAnimation.SwordAnimation(this);
 	}
 	override function UeMoveChk(x:Float, y:Float):Bool 

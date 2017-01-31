@@ -60,6 +60,11 @@ class Enemy extends Character
 			case CharacterSyu.SpellSyu(GreenSpell):movepattern = new GreenSpell(this);
 			case CharacterSyu.SpellSyu(FireElement):movepattern = new FireElement(this);
 			case CharacterSyu.EnemySyu(BlueKnight):movepattern = new BlueKnight(this);
+			case CharacterSyu.EnemySyu(BlackKnight):movepattern = new BlackKnight(this);
+			case CharacterSyu.EnemySyu(MirrorKnight):movepattern = new MirrorKnight(this);
+			case CharacterSyu.EnemySyu(RedKnight):movepattern = new RedKnight(this);
+			case CharacterSyu.EnemySyu(HyperKnight):movepattern = new HyperKnight(this);
+			case CharacterSyu.EnemySyu(LizardMan):movepattern = new LizardMan(this);
 		//	case CharacterSyu.Sonota(sonota):  trace("sonota");この書き方でsonotaを全部纏められる。素敵やん
 			default:trace("ENEMY ja Nai yatsu Dasicha DAMEEEEEEE!!!!");
 		}

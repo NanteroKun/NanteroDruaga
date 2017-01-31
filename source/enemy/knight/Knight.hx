@@ -11,12 +11,13 @@ import flixel.FlxSprite;
 class Knight extends Roper
 {
 	public var sword:FlxSprite;
-	private var shield:FlxSprite;
+	public var shield:FlxSprite;
 	public var walkcnt:Int;
 	public var swordcnt:Int;
 	private var swordmuki:Int;
 	private var kenfuricnt:Int;
 	private var kenfurispeed:Int;
+	private var nisemuki:Int;
 	public function new(s:Character) 
 	{
 		super(s);
@@ -25,6 +26,8 @@ class Knight extends Roper
 		swordcnt = 0;
 		swordmuki = 1;
 		walkcnt = 0;
+		kenfuricnt = 0;
+		nisemuki = 2;
 	}
 	override function GraphicSet():Void
 	{
@@ -75,26 +78,25 @@ class Knight extends Roper
 		}
 		swordcnt = Reg.intclamp(swordcnt, 0, 7);
 		walkcnt++;
-		var s:Int = Target.muki*2;
-		if (walkcnt % 8 > 3)
-		{
-			s++;
-		}
-		Target.animation.play(Std.string(s));
-		KnightAnimation.SwordAnimation(this);
 		super.Move(e);
 	}
 	override public function nisedraw() 
 	{
-		sword.x = Std.int(Target.x) - 8; sword.y =  Std.int(Target.y) - 8;
+		sword.x = Std.int(Target.x) - 8; sword.y = Std.int(Target.y) - 8;
 		shield.x = Target.x; shield.y = Target.y;
-		if (Type.enumEq(Target.syu,CharacterSyu.EnemySyu(LizMan)))
+		if (Type.enumEq(Target.syu,CharacterSyu.EnemySyu(LizardMan)))
 		{
-			
+			switch ( Target.muki)
+			{
+				case 0:shield.draw(); sword.draw(); super.nisedraw();
+				case 3:shield.draw(); super.nisedraw(); sword.draw();
+				case 2:super.nisedraw(); sword.draw(); shield.draw();
+				case 1:sword.draw(); super.nisedraw(); shield.draw();
+			}
 		}
 		else
 		{
-			switch (Target.muki)
+			switch ( Target.muki)
 			{
 				case 0:shield.draw(); sword.draw(); super.nisedraw();
 				case 1:shield.draw(); super.nisedraw(); sword.draw();
@@ -102,6 +104,7 @@ class Knight extends Roper
 				case 3:sword.draw(); super.nisedraw(); shield.draw();
 			}
 		}
+		KnightAnimation.SwordAnimation(this);
 	}
 	private function GiltonoKyori():Bool
 	{

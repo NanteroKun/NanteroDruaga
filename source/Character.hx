@@ -13,8 +13,10 @@ class Character extends FlxSprite
 	public var speed:Float;
 	public var muki:Int;
 	public var syu:CharacterSyu;//
+	public var hitpoint:Int;
 	public var firstframe:Bool;
 	private var Seizon:Bool;
+	public var getscore:Int;
 	public var movepattern:CharacterMovePattern;
 	public function new() 
 	{
