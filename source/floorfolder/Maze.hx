@@ -179,23 +179,24 @@ class Maze extends FlxObject
 	 * @param	y
 	 * @param	muki
 	 */
-	public static function WallDel(x:Int, y:Int,muki:Int):Void
+	public static function WallDel(x:Int, y:Int,muki:Int):Bool
 	{
 		switch (muki)
 		{
 			case 0:
-				if (WallReturn(x, y - 1) == 3) { WallObjectKesu(x, y - 1); return; }
-				if (WallReturn(x - 1, y - 1) == 1) { WallObjectKesu(x - 1, y - 1); return; }
+				if (WallReturn(x, y - 1) == 3) { WallObjectKesu(x, y - 1); return true; }
+				if (WallReturn(x - 1, y - 1) == 1) { WallObjectKesu(x - 1, y - 1); return true; }
 			case 1:
-				if (WallReturn(x, y - 1) == 2) { WallObjectKesu(x, y - 1); return; }
-				if (WallReturn(x, y) == 0) { WallObjectKesu(x, y); return; }
+				if (WallReturn(x, y - 1) == 2) { WallObjectKesu(x, y - 1); return true; }
+				if (WallReturn(x, y) == 0) { WallObjectKesu(x, y); return true; }
 			case 2:
-				if (WallReturn(x, y) == 3) { WallObjectKesu(x, y); return; }
-				if (WallReturn(x - 1, y) == 1) { WallObjectKesu(x - 1, y); return; }
+				if (WallReturn(x, y) == 3) { WallObjectKesu(x, y); return true; }
+				if (WallReturn(x - 1, y) == 1) { WallObjectKesu(x - 1, y); return true; }
 			case 3:
-				if (WallReturn(x - 1, y - 1) == 2) { WallObjectKesu(x - 1, y - 1); return ; }
-				if (WallReturn(x - 1, y) == 0) { WallObjectKesu(x - 1, y); return ; }
+				if (WallReturn(x - 1, y - 1) == 2) { WallObjectKesu(x - 1, y - 1); return true; }
+				if (WallReturn(x - 1, y) == 0) { WallObjectKesu(x - 1, y); return true; }
 		}
+		return false;
 	}
 	private static function WallObjectKesu(x:Int, y:Int):Void
 	{

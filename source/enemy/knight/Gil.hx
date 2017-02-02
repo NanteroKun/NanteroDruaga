@@ -27,25 +27,14 @@ class Gil extends Knight
 		sword.swordcnt = 4;
 		sword.swordmuki =-1;
 		sword.kenfurispeed = 7;
+		sword.isGilSword = true;
 		gilwaitcnt = 0;
 	}
 	override function GraphicSet():Void 
 	{
 		Target.loadGraphic("assets/images/gil/Gil.png", true, 16, 16);
-		for (i in 0...8)
-		{
-			Target.animation.add(Std.string(i), [i]);
-		}
 		sword.loadGraphic("assets/images/gil/whitesword.png", true, 32, 32);
-		for (i in 0...45)
-		{
-			sword.animation.add(Std.string(i), [i]);
-		}
 		shield.loadGraphic("assets/images/gil/gilshield.png", true, 16, 16);
-		for (i in 0...12)
-		{
-			shield.animation.add(Std.string(i), [i]);
-		}
 		super.GraphicSet();
 	}
 	override public function Move(e:Float) 
@@ -76,7 +65,22 @@ class Gil extends Knight
 		}
 		Target.x += direct.x * Target.speed;
 		Target.y += direct.y * Target.speed;
-		sword.Move(FlxG.keys.pressed.Z);
+		var kabehakai:Bool = sword.Move(FlxG.keys.pressed.Z);
+		if (kabehakai)
+		{
+			if ((Target.x - 20) % 24 == 0 && ((Target.y - 36) % 24 == 0))
+			{
+				if (idoumuki ==-1 /*&& マトック使用回数が残りアルデプロ*/)
+				{
+					var px:Int = Std.int((Target.x - 20) / 24);
+					var py:Int = Std.int((Target.y - 36) / 24);
+					if (Maze.WallDel(px, py, Target.muki))
+					{
+						//マトック使用回数減らす
+					}
+				}
+			}
+		}
 	}
 	override public function nisedraw() 
 	{

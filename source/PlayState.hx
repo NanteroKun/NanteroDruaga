@@ -159,7 +159,9 @@ class PlayState extends FlxState
 		switch (floor)
 		{
 			case 1:temp.add({syu:CharacterSyu.EnemySyu(GreenSlime), num:8});
-					temp.add({syu:CharacterSyu.EnemySyu(BlueKnight),num:3});
+					temp.add({syu:CharacterSyu.EnemySyu(BlueKnight), num:3});
+					temp.add({syu:CharacterSyu.EnemySyu(HyperKnightSuper), num:1});
+					temp.add({syu:CharacterSyu.EnemySyu(RedKnight), num:20});
 		}
 		return temp;
 	}

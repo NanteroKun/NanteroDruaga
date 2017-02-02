@@ -7,6 +7,7 @@ import flixel.FlxSprite;
  */
 class Sword extends FlxSprite
 {
+	public var isGilSword:Bool = false;
 	public var swordcnt:Int;
 	public var swordmuki:Int;
 	private var kenfuricnt:Int;
@@ -19,8 +20,9 @@ class Sword extends FlxSprite
 		kenfurispeed = 7;
 		super();
 	}
-	public function Move(SwordDasu:Bool):Void 
+	public function Move(SwordDasu:Bool):Bool 
 	{
+		var kabehakai:Bool = false;
 		if (swordcnt == 0)
 		{
 			if (SwordDasu)
@@ -28,6 +30,7 @@ class Sword extends FlxSprite
 				swordmuki = 1;
 				swordcnt = 1;
 				kenfuricnt = 0;
+				kabehakai = true;//ギルの場合剣を出した時に壁を壊す可能性がある
 			}
 		}
 		if (swordcnt != 0)
@@ -61,5 +64,6 @@ class Sword extends FlxSprite
 			}
 		}
 		swordcnt = Reg.intclamp(swordcnt, 0, 7);
+		return kabehakai;
 	}
 }

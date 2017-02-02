@@ -15,7 +15,7 @@ enum EnemySyu
 {
 	BlueWispSlow; BlueWispFast; RedWispSlow; RedWispFast;
 	GreenSlime; BlackSlime; RedSlime; BlueSlime; DarkGreenSlime; DarkYellowSlime;
-	BlueKnight; BlackKnight; MirrorKnight; HyperKnight; LizardMan; RedKnight;
+	BlueKnight; BlackKnight; MirrorKnight; HyperKnight; LizardMan; RedKnight; HyperKnightSuper;
 }
 enum SpellSyu
 {

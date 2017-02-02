@@ -23,6 +23,18 @@ class Knight extends Roper
 	override function GraphicSet():Void
 	{
 		super.GraphicSet();
+		for (i in 0...8)
+		{
+			Target.animation.add(Std.string(i), [i]);
+		}
+		for (i in 0...45)
+		{
+			sword.animation.add(Std.string(i), [i]);
+		}
+		for (i in 0...12)
+		{
+			shield.animation.add(Std.string(i), [i]);
+		}
 		Target.animation.play(Std.string(Target.muki));
 	}
 	override public function Move(e:Float):Void

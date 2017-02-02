@@ -1,28 +1,38 @@
-package enemy.roper;
+package enemy.knight;
 import flixel.FlxG;
+import flixel.FlxSprite;
 
 /**
  * ...
  * @author 
  */
-class Roper extends CharacterMovePattern
+class HyperKnightSuper extends Knight
 {
-	public var recovery1:Int;
-	public var recovery2:Int;
 	public function new(s:Character) 
 	{
+		sword = new Sword();
+		shield = new FlxSprite();
 		super(s);
+		s.speed = 1;
+		s.hitpoint = 96;
+		recovery1 = 48;
+		recovery2 = 0;
+		s.getscore = 0;
 	}
-	override public function Move(e:Float):Void
+	override function GraphicSet() 
 	{
-		if ((Target.x - 20) % 24 == 0 && ((Target.y - 36) % 24 == 0))
-		{
-			RoperTypeMove();//向き変更
-		}
+		Target.loadGraphic("assets/images/enemy/knight/hyperknight/HyperKnight.png", true, 16, 16);
+		sword.loadGraphic("assets/images/enemy/knight/hyperknight/HyperKnightSword.png", true, 32, 32);
+		shield.loadGraphic("assets/images/enemy/knight/hyperknight/HyperKnightShield.png", true, 16, 16);
+		super.GraphicSet();
+	}
+	override public function Move(e:Float) 
+	{
 		super.Move(e);
 	}
-	private function RoperTypeMove():Void
+	override private function RoperTypeMove():Void
 	{
+		Target.speed = 1;
 		if (Target.x == Reg.GilPos.x && Target.y == Reg.GilPos.y)
 		{
 			Target.muki = 3;
@@ -44,7 +54,9 @@ class Roper extends CharacterMovePattern
 					Target.muki = 2;
 					if (!ShitaMoveChk(Target.x, Target.y))
 					{
-						Target.muki = FlxG.random.int(0, 3);
+						//Target.muki = FlxG.random.int(0, 3);
+						Target.speed = 0;
+						return;
 					}
 					else
 					{
@@ -56,7 +68,9 @@ class Roper extends CharacterMovePattern
 					Target.muki = 0;
 					if (!UeMoveChk(Target.x, Target.y))
 					{
-						Target.muki = FlxG.random.int(0, 3);
+						//Target.muki = FlxG.random.int(0, 3);
+						Target.speed = 0;
+						return;
 					}
 					else
 					{
@@ -71,7 +85,9 @@ class Roper extends CharacterMovePattern
 					Target.muki = 1;
 					if (!MigiMoveChk(Target.x, Target.y))
 					{
-						Target.muki = FlxG.random.int(0, 3);
+						//Target.muki = FlxG.random.int(0, 3);
+						Target.speed = 0;
+						return;
 					}
 					else
 					{
@@ -83,7 +99,9 @@ class Roper extends CharacterMovePattern
 					Target.muki = 3;
 					if (!HidariMoveChk(Target.x, Target.y))
 					{
-						Target.muki = FlxG.random.int(0, 3);
+						//Target.muki = FlxG.random.int(0, 3);
+						Target.speed = 0;
+						return;
 					}
 					else
 					{
@@ -106,24 +124,5 @@ class Roper extends CharacterMovePattern
 				Target.muki = Reg.HidariTurn(Target.muki);
 			}
 		}
-	}
-	private function FukurokoujiChk (m:Int,x:Float,y:Float):Bool
-	{
-		var px:Float = x;
-		var py:Float = y;
-		switch (m)
-		{
-			case 0:py -= 24;
-			case 1:px += 24;
-			case 2:py += 24;
-			case 3:px -= 24;
-		}
-		if (!IdousakiChk(m, px, py) 
-			&& !IdousakiChk(Reg.MigiTurn(m),px,py)
-			&& !IdousakiChk(Reg.HidariTurn(m), px, py))//右に曲がった先が袋小路でした
-		{
-			return true;
-		}
-		return false;
 	}
 }

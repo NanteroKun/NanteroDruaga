@@ -21,20 +21,8 @@ class MirrorKnight extends Knight
 	override function GraphicSet() 
 	{
 		Target.loadGraphic("assets/images/enemy/knight/mirrorknight/MirrorKnight.png", true, 16, 16);
-		for (i in 0...8)
-		{
-			Target.animation.add(Std.string(i), [i]);
-		}
 		sword.loadGraphic("assets/images/enemy/knight/mirrorknight/MirrorKnightSword.png", true, 32, 32);
-		for (i in 0...45)
-		{
-			sword.animation.add(Std.string(i), [i]);
-		}
 		shield.loadGraphic("assets/images/enemy/knight/mirrorknight/MirrorKnightShield.png", true, 16, 16);
-		for (i in 0...12)
-		{
-			shield.animation.add(Std.string(i), [i]);
-		}
 		super.GraphicSet();
 	}
 	override public function Move(e:Float) 
