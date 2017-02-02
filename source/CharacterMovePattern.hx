@@ -15,6 +15,7 @@ class CharacterMovePattern
 	public function new(s:Character) //Targetにs:Character参照渡しで以後Targetに対して操作する
 	{
 		Target = s;
+		Target.color = 0xffffff;
 	}
 	public function GraphicSet()
 	{
@@ -85,7 +86,7 @@ class CharacterMovePattern
 		var x1:Int = Std.int((x - 20) / 24);
 		var y1:Int = Std.int((y - 36) / 24);
 		if (Maze.WallReturn(x1 - 1, y1 - 1) == 2) { return false; }
-        if (Maze.WallReturn(x1 - 1, y1) == 0) { return false; }
-        return true;
+		if (Maze.WallReturn(x1 - 1, y1) == 0) { return false; }
+		return true;
 	}
 }

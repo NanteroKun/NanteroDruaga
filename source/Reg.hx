@@ -19,7 +19,7 @@ class Reg
 	}
 	public static var GamenSize:Int = 3;
 	public static var font:FlxBitmapFont;
-	public static var floor:Int = 0;
+	public static var floor:Int;
 	public static var gamecount:Int = 0;
 	public static var zanki:Int;
 	public static var zantime:Int;
@@ -92,8 +92,8 @@ class Reg
 	}
 	public inline static function fillSpace(n:Int, digit:Int,?ume:String=" "):String 
 	{
-    var str:String = "" + n;
-    return StringTools.lpad(str, ume, digit);
+	var str:String = "" + n;
+	return StringTools.lpad(str, ume, digit);
 	}
 	public inline static function MigiTurn(m:Int):Int
 	{
@@ -113,5 +113,4 @@ class Reg
 		}
 		return m;
 	}
-	
 }

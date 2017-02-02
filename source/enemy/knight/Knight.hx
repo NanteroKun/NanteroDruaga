@@ -10,24 +10,15 @@ import flixel.FlxSprite;
  */
 class Knight extends Roper
 {
-	public var sword:FlxSprite;
+	public var sword:Sword;
 	public var shield:FlxSprite;
 	public var walkcnt:Int;
-	public var swordcnt:Int;
-	private var swordmuki:Int;
-	private var kenfuricnt:Int;
-	private var kenfurispeed:Int;
-	private var nisemuki:Int;
 	public function new(s:Character) 
 	{
 		super(s);
 		Target.muki = 2;
 		Target.setPosition(Reg.XposSet(), Reg.YposSet());
-		swordcnt = 0;
-		swordmuki = 1;
 		walkcnt = 0;
-		kenfuricnt = 0;
-		nisemuki = 2;
 	}
 	override function GraphicSet():Void
 	{
@@ -36,47 +27,7 @@ class Knight extends Roper
 	}
 	override public function Move(e:Float):Void
 	{
-		if (swordcnt == 0)
-		{
-			
-			if (GiltonoKyori())
-			{
-				swordmuki = 1;
-				swordcnt = 1;
-				kenfuricnt = 0;
-			}
-		}
-		if (swordcnt != 0)
-		{
-			kenfuricnt++;
-			if (kenfuricnt >= kenfurispeed)
-			{
-				kenfuricnt = 0;
-				swordcnt += swordmuki;
-				if (swordcnt == 1 && GiltonoKyori() && swordmuki == -1)
-				{
-					swordmuki = 1;
-				}
-				if (swordcnt == 6 && swordmuki == 1)
-				{
-					if (GiltonoKyori())
-					{
-						swordcnt = 7;
-					}
-					else
-					{
-						swordmuki =-1;
-					}
-				}
-			}
-			if (swordcnt == 7 && !GiltonoKyori())
-			{
-				swordcnt = 5; 
-				swordmuki =-1; 
-				kenfuricnt = 0;
-			}
-		}
-		swordcnt = Reg.intclamp(swordcnt, 0, 7);
+		sword.Move(GiltonoKyori());
 		walkcnt++;
 		super.Move(e);
 	}
@@ -86,7 +37,7 @@ class Knight extends Roper
 		shield.x = Target.x; shield.y = Target.y;
 		if (Type.enumEq(Target.syu,CharacterSyu.EnemySyu(LizardMan)))
 		{
-			switch ( Target.muki)
+			switch (Target.muki)
 			{
 				case 0:shield.draw(); sword.draw(); super.nisedraw();
 				case 3:shield.draw(); super.nisedraw(); sword.draw();
@@ -96,7 +47,7 @@ class Knight extends Roper
 		}
 		else
 		{
-			switch ( Target.muki)
+			switch (Target.muki)
 			{
 				case 0:shield.draw(); sword.draw(); super.nisedraw();
 				case 1:shield.draw(); super.nisedraw(); sword.draw();
@@ -104,7 +55,7 @@ class Knight extends Roper
 				case 3:sword.draw(); super.nisedraw(); shield.draw();
 			}
 		}
-		KnightAnimation.SwordAnimation(this);
+		SwordAnimation();
 	}
 	private function GiltonoKyori():Bool
 	{
@@ -115,5 +66,29 @@ class Knight extends Roper
 			return true;
 		}
 		return false;
+	}
+	private function SwordAnimation():Void
+	{
+		var w:Int;
+		w = Target.muki * 11;
+		if (sword.swordcnt == 0)
+		{
+			w += Std.int((walkcnt & 15) / 4);
+		}
+		else
+		{
+			w += 3 + sword.swordcnt;
+		}
+		sword.animation.play(Std.string(w));
+		var p:Int = Std.int(sword.swordcnt / 2);
+		p = Reg.intclamp(p, 0, 2);
+		p += Target.muki * 3;
+		shield.animation.play(Std.string(p));
+		var t:Int = Target.muki * 2;
+		if (walkcnt % 8 > 3)
+		{
+			t++;
+		}
+		Target.animation.play(Std.string(t));
 	}
 }

@@ -9,7 +9,7 @@ class RedKnight extends Knight
 {
 	public function new(s:Character) 
 	{
-		sword = new FlxSprite();
+		sword = new Sword();
 		shield = new FlxSprite();
 		super(s);
 		s.speed = 0.5;
@@ -17,9 +17,6 @@ class RedKnight extends Knight
 		recovery1 = 24;
 		recovery2 = 9;
 		s.getscore = 1200;
-		kenfurispeed = 7;
-		kenfuricnt = 0;
-		
 	}
 	override function GraphicSet() 
 	{

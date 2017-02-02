@@ -32,6 +32,7 @@ class PlayState extends FlxState
 		FlxG.debugger.visible = true;
 		FlxG.debugger.drawDebug = true;
 		Reg.font = FlxBitmapFont.fromXNA("assets/images/font/NamcoFont.png", " 0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ.@,;?!");
+		Reg.floor = 1;
 		GamenUp = new GamenUpDisp();
 		add(GamenUp);
 		ZanTime = new Time();
@@ -49,6 +50,7 @@ class PlayState extends FlxState
 		cam.height = 288;
 		FlxG.worldBounds.set(0, 0, 464, 288);
 		floorcnt = 0;
+		
 		Reg.zantime = 2000;
 		TsuikaEnemy.Init();
 		FloorStartEnemySet(Reg.floor);
@@ -116,35 +118,49 @@ class PlayState extends FlxState
 	 */
 	private function FloorStartEnemySet(floor:Int):Void
 	{
-		for (i in 0...50)
+		var floorstartenemy:List<EnemySyutsugenTable> = floorstartenemysettable(floor);
+		var enemys:List<CharacterSyu> = new List<CharacterSyu>();
+		for (e in floorstartenemy)
 		{
-				var s = CharacterSyu.EnemySyu(RedSlime);
-				var k:Int = FlxG.random.int(0, 15);
-			//	k = 15;
-				var s:TsuikaEnemyTable = {syu:CharacterSyu.No, x:0, y:0, m:0, wait:0};
-				switch(k)
+			if (e.syu != CharacterSyu.No && e.num > 0)
+			{
+				for (i in 0...e.num)
 				{
-					case 0:s = {syu:CharacterSyu.EnemySyu(RedSlime), x:0, y:0, m:0, wait:0};
-					case 1:s = {syu:CharacterSyu.EnemySyu(BlackSlime), x:0, y:0, m:0, wait:0};
-					case 2:s = {syu:CharacterSyu.EnemySyu(GreenSlime), x:0, y:0, m:0, wait:0};
-					case 3:s = {syu:CharacterSyu.EnemySyu(BlueSlime), x:0, y:0, m:0, wait:0};
-					case 4:s = {syu:CharacterSyu.EnemySyu(DarkGreenSlime), x:0, y:0, m:0, wait:0};
-					case 5:s = {syu:CharacterSyu.EnemySyu(DarkYellowSlime), x:0, y:0, m:0, wait:0};
-					case 6:s = {syu:CharacterSyu.EnemySyu(BlueWispFast), x:0, y:0, m:0, wait:0};
-					case 7:s = {syu:CharacterSyu.EnemySyu(BlueWispSlow), x:0, y:0, m:0, wait:0};
-					case 8:s = {syu:CharacterSyu.EnemySyu(RedWispFast), x:0, y:0, m:0, wait:0};
-					case 9:s = {syu:CharacterSyu.EnemySyu(RedWispSlow), x:0, y:0, m:0, wait:0};
-					case 10:s = {syu:CharacterSyu.EnemySyu(BlueKnight), x:0, y:0, m:0, wait:0};
-					case 11:s = {syu:CharacterSyu.EnemySyu(BlackKnight), x:0, y:0, m:0, wait:0};
-					case 12:s = {syu:CharacterSyu.EnemySyu(MirrorKnight), x:0, y:0, m:0, wait:0};
-					case 13:s = {syu:CharacterSyu.EnemySyu(RedKnight), x:0, y:0, m:0, wait:0};
-					case 14:s = {syu:CharacterSyu.EnemySyu(HyperKnight), x:0, y:0, m:0, wait:0};
-					case 15:s = {syu:CharacterSyu.EnemySyu(LizardMan), x:0, y:0, m:0, wait:0};
+					enemys.add(e.syu);
 				}
-				if (s.syu != CharacterSyu.No)
-				{
-					TsuikaEnemy.TsuikaEnemyTableSet(s);
-				}
+			}
 		}
+		var num:Int = 0;
+		for (e in enemys)
+		{
+			num++;
+			var s:TsuikaEnemyTable = {syu:CharacterSyu.No, x:0, y:0, m:0, wait:0};
+			s.syu = e;
+			if (s.syu != CharacterSyu.No)
+			{
+				switch (s.syu)
+				{
+					case CharacterSyu.EnemySyu(BlackKnight), CharacterSyu.EnemySyu(BlueKnight),
+						 CharacterSyu.EnemySyu(RedKnight), CharacterSyu.EnemySyu(LizardMan)
+						 :s.wait =Std.int(((num - 1) * 32 + 16) / 2);
+					case CharacterSyu.EnemySyu(HyperKnight), CharacterSyu.EnemySyu(MirrorKnight)
+						:s.wait = Std.int(((num - 1) * 32 + 16) / 8);
+					default:
+				}
+				s.wait += 120;
+				TsuikaEnemy.TsuikaEnemyTableSet(s);
+			}
+		}
+		TsuikaEnemy.TsuikaEnemyTableSet({syu:CharacterSyu.EnemySyu(BlueWispFast),x:0,y:0,m:0,wait:600});//タイムオーバー時の追い出しウィスプ（TEST)
+	}
+	private function floorstartenemysettable(floor:Int):List<EnemySyutsugenTable>
+	{
+		var temp:List<EnemySyutsugenTable> = new List<EnemySyutsugenTable>();
+		switch (floor)
+		{
+			case 1:temp.add({syu:CharacterSyu.EnemySyu(GreenSlime), num:8});
+					temp.add({syu:CharacterSyu.EnemySyu(BlueKnight),num:3});
+		}
+		return temp;
 	}
 }

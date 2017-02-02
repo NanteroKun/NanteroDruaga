@@ -9,7 +9,7 @@ class HyperKnight extends Knight
 {
 	public function new(s:Character) 
 	{
-		sword = new FlxSprite();
+		sword = new Sword();
 		shield = new FlxSprite();
 		super(s);
 		s.speed = 0.5;
@@ -17,9 +17,6 @@ class HyperKnight extends Knight
 		recovery1 = 96;
 		recovery2 = 42;
 		s.getscore = 300;
-		kenfurispeed = 7;
-		kenfuricnt = 0;
-		
 	}
 	override function GraphicSet() 
 	{

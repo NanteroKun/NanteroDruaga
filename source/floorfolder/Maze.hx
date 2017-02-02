@@ -28,7 +28,7 @@ class Maze extends FlxObject
 	private function MakeMaze():Void
 	{
 		walls = new FlxTypedGroup<Wall>();
-		randomseed = Reg.floor;
+		randomseed = Reg.floor-1;
 		var cnt:Int = 0;
 		for (x in 0...17)
 		{

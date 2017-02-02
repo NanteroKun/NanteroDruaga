@@ -9,7 +9,7 @@ class MirrorKnight extends Knight
 {
 	public function new(s:Character) 
 	{
-		sword = new FlxSprite();
+		sword = new Sword();
 		shield = new FlxSprite();
 		super(s);
 		s.speed = Reg.GilPos.speed;
@@ -17,9 +17,6 @@ class MirrorKnight extends Knight
 		recovery1 = 48;
 		recovery2 = 21;
 		s.getscore = 2000;
-		kenfurispeed = 7;
-		kenfuricnt = 0;
-		
 	}
 	override function GraphicSet() 
 	{

@@ -13,6 +13,8 @@ import floorfolder.Maze;
  */
 class Gil extends Knight
 {
+	private var idoumuki:Int;
+	private var gilwaitcnt:Int;
 	private var direct:FlxPoint = FlxPoint.get(0, 0);
 	public function new(s:Character) 
 	{
@@ -20,11 +22,12 @@ class Gil extends Knight
 		Target.setPosition(20, 36);
 		Target.speed = 1;
 		Target.muki = 2;
-		sword = new FlxSprite();
+		sword = new Sword();
 		shield = new FlxSprite();
-		swordcnt = 3;
-		swordmuki =-1;
-		kenfurispeed = 7;
+		sword.swordcnt = 4;
+		sword.swordmuki =-1;
+		sword.kenfurispeed = 7;
+		gilwaitcnt = 0;
 	}
 	override function GraphicSet():Void 
 	{
@@ -47,8 +50,9 @@ class Gil extends Knight
 	}
 	override public function Move(e:Float) 
 	{
-		var isZkey:Bool = false;
-		var idoumuki:Int =-1;
+		gilwaitcnt++;
+		if (gilwaitcnt < 120){return;}
+		idoumuki =-1;
 		if(FlxG.keys.pressed.LEFT) {
             idoumuki=3;
         }
@@ -62,71 +66,36 @@ class Gil extends Knight
             idoumuki = 2;
         }
 		direct.set(0, 0);
-		switch(idoumuki) 					
+		switch(idoumuki)
 		{
 			case 0:walkcnt++; if (UeMoveChk(Target.x, Target.y)){direct.y =-1; }
 			case 1:walkcnt++; if (MigiMoveChk(Target.x,Target.y)){direct.x=1; }
 			case 2:walkcnt++; if (ShitaMoveChk(Target.x,Target.y)){direct.y=1; }
-			case 3:walkcnt++; if (HidariMoveChk(Target.x, Target.y)){direct.x =-1; }	
+			case 3:walkcnt++; if (HidariMoveChk(Target.x, Target.y)){direct.x =-1; }
 			default:walkcnt = 0;
 		}
 		Target.x += direct.x * Target.speed;
 		Target.y += direct.y * Target.speed;
-		if (FlxG.keys.pressed.Z) 
+		sword.Move(FlxG.keys.pressed.Z);
+	}
+	override public function nisedraw() 
+	{
+		if (gilwaitcnt < 60)
 		{
-			isZkey = true;
-            if (swordcnt == 0)
-			{
-				swordcnt = 1;
-				swordmuki = 1;
-				kenfuricnt = 0;
-				//マトック持っとる前提でーす！
-				if (idoumuki == -1)
-				{
-					if ((Target.x - 20) % 24 == 0 && (Target.y - 36) % 24 == 0 )
-					{
-						if (!IdousakiChk(Target.muki, Target.x, Target.y))
-						{
-							var px:Int = Std.int((Target.x - 20) / 24);
-							var py:Int = Std.int((Target.y - 36) / 24);
-							Maze.WallDel(px, py, Target.muki);
-						}
-					}
-				}
-			}
-        }
-		if (swordcnt != 0)
+			SwordAnimation();
+			return; 
+		}
+		else
 		{
-			kenfuricnt++;
-			if (kenfuricnt >= kenfurispeed)
+			if (gilwaitcnt < 120)
 			{
-				kenfuricnt = 0;
-				swordcnt += swordmuki;
-				if (swordcnt == 1 && isZkey && swordmuki ==-1)
+				if (gilwaitcnt % 2 == 0)
 				{
-					swordmuki = 1;
-				}
-				if (swordcnt == 6 && swordmuki == 1)
-				{
-					if (isZkey)
-					{
-						swordcnt = 7;
-					}
-					else
-					{
-						swordmuki =-1;
-					}
+					return; 
 				}
 			}
 		}
-		if (swordcnt == 7 && !isZkey)
-		{
-			swordcnt = 5; 
-			swordmuki =-1; 
-			kenfuricnt = 0;
-		}
-		swordcnt = Reg.intclamp(swordcnt, 0, 7);
-		KnightAnimation.SwordAnimation(this);
+		super.nisedraw();
 	}
 	override function UeMoveChk(x:Float, y:Float):Bool 
 	{

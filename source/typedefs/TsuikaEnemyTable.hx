@@ -13,3 +13,11 @@ typedef TsuikaEnemyTable =
 	var m:Int;
 	var wait:Int;
 }
+/**
+ * フロアスタート時に何が何匹出るかで使うやつ
+ */
+typedef EnemySyutsugenTable =
+{
+	var syu:CharacterSyu;//何が
+	var num:Int;		//何匹
+}
