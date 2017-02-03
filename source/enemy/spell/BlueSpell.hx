@@ -1,5 +1,6 @@
 package enemy.spell;
 import floorfolder.Maze;
+import typedefs.TsuikaEnemyTable.BlockPoint;
 
 /**
  * ...
@@ -18,12 +19,13 @@ class BlueSpell extends Spell
 	}
 	override public function Move(e:Float) 
 	{
-		if ((Target.x - 20) % 24 == 0 && (Target.y - 36) % 24 == 0 )
+		if (IsBlockCenter())
 		{
 			if (!IdousakiChk(Target.muki, Target.x, Target.y))
 			{
-				var px:Int = Std.int((Target.x - 20) / 24);
-				var py:Int = Std.int((Target.y - 36) / 24);
+				var temp:BlockPoint = ZahyoToBox();
+				var px = temp.bx;
+				var py = temp.by;
 				Maze.WallDel(px, py, Target.muki);
 				Target.kill();
 			}

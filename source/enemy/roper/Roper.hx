@@ -1,4 +1,5 @@
 package enemy.roper;
+import enums.CharacterSyu.Muki;
 import flixel.FlxG;
 
 /**
@@ -15,7 +16,7 @@ class Roper extends CharacterMovePattern
 	}
 	override public function Move(e:Float):Void
 	{
-		if ((Target.x - 20) % 24 == 0 && ((Target.y - 36) % 24 == 0))
+		if (IsBlockCenter())
 		{
 			RoperTypeMove();//向き変更
 		}
@@ -25,10 +26,10 @@ class Roper extends CharacterMovePattern
 	{
 		if (Target.x == Reg.GilPos.x && Target.y == Reg.GilPos.y)
 		{
-			Target.muki = 3;
+			Target.muki = Muki.hidari;
 			if (!HidariMoveChk(Target.x,Target.y))//左に壁があったら？
 			{
-				Target.muki = FlxG.random.int(0, 3);
+				Target.muki = Reg.RandomMuki();
 			}
 			else
 			{
@@ -41,10 +42,10 @@ class Roper extends CharacterMovePattern
 			{
 				if (Target.y < Reg.GilPos.y)
 				{
-					Target.muki = 2;
+					Target.muki = Muki.shita;
 					if (!ShitaMoveChk(Target.x, Target.y))
 					{
-						Target.muki = FlxG.random.int(0, 3);
+						Target.muki = Reg.RandomMuki();
 					}
 					else
 					{
@@ -53,10 +54,10 @@ class Roper extends CharacterMovePattern
 				}
 				else
 				{
-					Target.muki = 0;
+					Target.muki = Muki.ue;
 					if (!UeMoveChk(Target.x, Target.y))
 					{
-						Target.muki = FlxG.random.int(0, 3);
+						Target.muki = Reg.RandomMuki();
 					}
 					else
 					{
@@ -68,10 +69,10 @@ class Roper extends CharacterMovePattern
 			{
 				if (Target.x < Reg.GilPos.x)
 				{
-					Target.muki = 1;
+					Target.muki = Muki.migi;
 					if (!MigiMoveChk(Target.x, Target.y))
 					{
-						Target.muki = FlxG.random.int(0, 3);
+						Target.muki = Reg.RandomMuki();
 					}
 					else
 					{
@@ -80,10 +81,10 @@ class Roper extends CharacterMovePattern
 				}
 				else
 				{
-					Target.muki = 3;
+					Target.muki = Muki.hidari;
 					if (!HidariMoveChk(Target.x, Target.y))
 					{
-						Target.muki = FlxG.random.int(0, 3);
+						Target.muki = Reg.RandomMuki();
 					}
 					else
 					{
@@ -107,16 +108,16 @@ class Roper extends CharacterMovePattern
 			}
 		}
 	}
-	private function FukurokoujiChk (m:Int,x:Float,y:Float):Bool
+	private function FukurokoujiChk (m:Muki,x:Float,y:Float):Bool
 	{
 		var px:Float = x;
 		var py:Float = y;
 		switch (m)
 		{
-			case 0:py -= 24;
-			case 1:px += 24;
-			case 2:py += 24;
-			case 3:px -= 24;
+			case Muki.ue:py -= 24;
+			case Muki.migi:px += 24;
+			case Muki.shita:py += 24;
+			case Muki.hidari:px -= 24;
 		}
 		if (!IdousakiChk(m, px, py) 
 			&& !IdousakiChk(Reg.MigiTurn(m),px,py)

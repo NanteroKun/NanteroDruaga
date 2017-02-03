@@ -1,4 +1,5 @@
 package enemy.knight;
+import enums.CharacterSyu.Muki;
 import flixel.FlxG;
 import flixel.FlxSprite;
 
@@ -35,10 +36,10 @@ class HyperKnightSuper extends Knight
 		Target.speed = 1;
 		if (Target.x == Reg.GilPos.x && Target.y == Reg.GilPos.y)
 		{
-			Target.muki = 3;
+			Target.muki = Muki.hidari;
 			if (!HidariMoveChk(Target.x,Target.y))//左に壁があったら？
 			{
-				Target.muki = FlxG.random.int(0, 3);
+				Target.muki = Reg.RandomMuki();
 			}
 			else
 			{
@@ -51,7 +52,7 @@ class HyperKnightSuper extends Knight
 			{
 				if (Target.y < Reg.GilPos.y)
 				{
-					Target.muki = 2;
+					Target.muki = Muki.shita;
 					if (!ShitaMoveChk(Target.x, Target.y))
 					{
 						//Target.muki = FlxG.random.int(0, 3);
@@ -65,7 +66,7 @@ class HyperKnightSuper extends Knight
 				}
 				else
 				{
-					Target.muki = 0;
+					Target.muki = Muki.ue;
 					if (!UeMoveChk(Target.x, Target.y))
 					{
 						//Target.muki = FlxG.random.int(0, 3);
@@ -82,7 +83,7 @@ class HyperKnightSuper extends Knight
 			{
 				if (Target.x < Reg.GilPos.x)
 				{
-					Target.muki = 1;
+					Target.muki = Muki.migi;
 					if (!MigiMoveChk(Target.x, Target.y))
 					{
 						//Target.muki = FlxG.random.int(0, 3);
@@ -96,7 +97,7 @@ class HyperKnightSuper extends Knight
 				}
 				else
 				{
-					Target.muki = 3;
+					Target.muki = Muki.hidari;
 					if (!HidariMoveChk(Target.x, Target.y))
 					{
 						//Target.muki = FlxG.random.int(0, 3);

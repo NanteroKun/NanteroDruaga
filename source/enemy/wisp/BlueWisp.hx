@@ -20,7 +20,7 @@ class BlueWisp extends Wisp
 	}
 	override public function Move(e:Float) 
 	{
-		if ((Target.x - 20) % 24 == 0 && (Target.y - 36) % 24 == 0 )
+		if (IsBlockCenter())
 		{
 			var cnt:Int = 0;
 			while (true)

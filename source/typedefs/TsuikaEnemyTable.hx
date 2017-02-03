@@ -10,7 +10,7 @@ typedef TsuikaEnemyTable =
 	var syu:CharacterSyu;
 	var x:Float;
 	var y:Float;
-	var m:Int;
+	var m:Muki;
 	var wait:Int;
 }
 /**
@@ -20,4 +20,10 @@ typedef EnemySyutsugenTable =
 {
 	var syu:CharacterSyu;//何が
 	var num:Int;		//何匹
+}
+typedef BlockPoint =
+{
+	var center:Bool;
+	var bx:Int;
+	var by:Int;
 }

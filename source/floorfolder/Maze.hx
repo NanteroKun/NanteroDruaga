@@ -1,4 +1,5 @@
 package floorfolder;
+import enums.CharacterSyu.Muki;
 import flixel.FlxObject;
 import flixel.group.FlxGroup.FlxTypedGroup;
 
@@ -153,7 +154,7 @@ class Maze extends FlxObject
 	{
 		if (x < 0 || x > 16 || y < 0 || y > 7)
 		{
-			return 99;   								
+			return 99; 
 		}
 		return wall2[x+y*17];
 	}
@@ -179,20 +180,20 @@ class Maze extends FlxObject
 	 * @param	y
 	 * @param	muki
 	 */
-	public static function WallDel(x:Int, y:Int,muki:Int):Bool
+	public static function WallDel(x:Int, y:Int,muki:Muki):Bool
 	{
 		switch (muki)
 		{
-			case 0:
+			case Muki.ue:
 				if (WallReturn(x, y - 1) == 3) { WallObjectKesu(x, y - 1); return true; }
 				if (WallReturn(x - 1, y - 1) == 1) { WallObjectKesu(x - 1, y - 1); return true; }
-			case 1:
+			case Muki.migi:
 				if (WallReturn(x, y - 1) == 2) { WallObjectKesu(x, y - 1); return true; }
 				if (WallReturn(x, y) == 0) { WallObjectKesu(x, y); return true; }
-			case 2:
+			case Muki.shita:
 				if (WallReturn(x, y) == 3) { WallObjectKesu(x, y); return true; }
 				if (WallReturn(x - 1, y) == 1) { WallObjectKesu(x - 1, y); return true; }
-			case 3:
+			case Muki.hidari:
 				if (WallReturn(x - 1, y - 1) == 2) { WallObjectKesu(x - 1, y - 1); return true; }
 				if (WallReturn(x - 1, y) == 0) { WallObjectKesu(x - 1, y); return true; }
 		}
@@ -204,7 +205,7 @@ class Maze extends FlxObject
 		var kesi:String = Std.string(x) + Std.string(y);
 		walls.forEachAlive(function(w:Wall) 
 		{
-			w.WallKesu(kesi); // すべて消す
+			w.WallKesu(kesi); 
 		});
 	}
 }

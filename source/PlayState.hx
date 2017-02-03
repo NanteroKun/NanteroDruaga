@@ -100,7 +100,7 @@ class PlayState extends FlxState
 	 * @param	y
 	 * @param	m 生まれる時の向き
 	 */
-	private function EnemyUmu(syu:CharacterSyu, x:Float, y:Float, m:Int):Void
+	private function EnemyUmu(syu:CharacterSyu, x:Float, y:Float, m:Muki):Void
 	{
 		var temp:Enemy;
 		temp = enemygroup.getFirstDead();
@@ -134,7 +134,7 @@ class PlayState extends FlxState
 		for (e in enemys)
 		{
 			num++;
-			var s:TsuikaEnemyTable = {syu:CharacterSyu.No, x:0, y:0, m:0, wait:0};
+			var s:TsuikaEnemyTable = {syu:CharacterSyu.No, x:0, y:0, m:Muki.ue, wait:0};
 			s.syu = e;
 			if (s.syu != CharacterSyu.No)
 			{
@@ -151,17 +151,17 @@ class PlayState extends FlxState
 				TsuikaEnemy.TsuikaEnemyTableSet(s);
 			}
 		}
-		TsuikaEnemy.TsuikaEnemyTableSet({syu:CharacterSyu.EnemySyu(BlueWispFast),x:0,y:0,m:0,wait:600});//タイムオーバー時の追い出しウィスプ（TEST)
+		TsuikaEnemy.TsuikaEnemyTableSet({syu:CharacterSyu.EnemySyu(BlueWispFast),x:0,y:0,m:Muki.ue,wait:600});//タイムオーバー時の追い出しウィスプ（TEST)
 	}
 	private function floorstartenemysettable(floor:Int):List<EnemySyutsugenTable>
 	{
 		var temp:List<EnemySyutsugenTable> = new List<EnemySyutsugenTable>();
 		switch (floor)
 		{
-			case 1:temp.add({syu:CharacterSyu.EnemySyu(GreenSlime), num:8});
-					temp.add({syu:CharacterSyu.EnemySyu(BlueKnight), num:3});
-					temp.add({syu:CharacterSyu.EnemySyu(HyperKnightSuper), num:1});
-					temp.add({syu:CharacterSyu.EnemySyu(RedKnight), num:20});
+			case 1://temp.add({syu:CharacterSyu.EnemySyu(GreenSlime), num:8});
+					//temp.add({syu:CharacterSyu.EnemySyu(BlueKnight), num:3});
+					//temp.add({syu:CharacterSyu.EnemySyu(HyperKnightSuper), num:1});
+					temp.add({syu:CharacterSyu.EnemySyu(DarkYellowSlime), num:30});
 		}
 		return temp;
 	}

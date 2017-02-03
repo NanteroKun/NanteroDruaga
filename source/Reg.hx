@@ -1,11 +1,7 @@
 package;
-import enemy.Enemy;
-import enums.CharacterSyu;
+import enums.CharacterSyu.Muki;
 import flixel.FlxG;
 import flixel.graphics.frames.FlxBitmapFont;
-import flixel.group.FlxGroup.FlxTypedGroup;
-import flixel.math.FlxPoint;
-import floorfolder.Maze;
 
 /**
  * ...
@@ -92,25 +88,75 @@ class Reg
 	}
 	public inline static function fillSpace(n:Int, digit:Int,?ume:String=" "):String 
 	{
-	var str:String = "" + n;
-	return StringTools.lpad(str, ume, digit);
+		var str:String = "" + n;
+		return StringTools.lpad(str, ume, digit);
 	}
-	public inline static function MigiTurn(m:Int):Int
+	public inline static function MigiTurn(m:Muki):Muki
 	{
-		m += 1;
-		if (m > 3)
+		var ret:Muki = Muki.ue;
+		switch (m)
 		{
-			m = 0;
+			case Muki.ue:ret= Muki.migi;
+			case Muki.migi:ret= Muki.shita;
+			case Muki.shita:ret= Muki.hidari;
+			case Muki.hidari:ret = Muki.ue;
+			default:trace("MUKIERROR");
 		}
-		return m;
+		return ret;
 	}
-	public inline static function HidariTurn(m:Int):Int
+	public inline static function HidariTurn(m:Muki):Muki
 	{
-		m -= 1;
-		if (m < 0)
+		var ret:Muki = Muki.ue;
+		switch (m)
 		{
-			m = 3;
+			case Muki.ue:ret= Muki.hidari;
+			case Muki.migi:ret= Muki.ue;
+			case Muki.shita:ret= Muki.migi;
+			case Muki.hidari:ret = Muki.shita;
+			default:trace("MUKIERROR");
 		}
-		return m;
+		return ret;
+	}
+	public inline static function MukiToInt(m:Muki):Int
+	{
+		var ret:Int = 0;
+		switch (m)
+		{
+			case Muki.ue:ret= 0;
+			case Muki.migi:ret= 1;
+			case Muki.shita:ret= 2;
+			case Muki.hidari:ret = 3;
+			default:trace("MUKIERROR");
+		}
+		return ret;
+	}
+	/*
+	public inline static function IntToMuki(m:Int):Muki
+	{
+		var ret:Muki = Muki.ue;
+		switch (m)
+		{
+			case 0:ret = Muki.ue;
+			case 1:ret = Muki.migi;
+			case 2:ret = Muki.shita;
+			case 3:ret = Muki.hidari;
+			default:trace("MUKIERROR");
+		}
+		return ret;
+	}
+	*/
+	public inline static function RandomMuki():Muki
+	{
+		var ret:Muki = Muki.ue;
+		var r:Int = FlxG.random.int(0, 3);
+		switch (r)
+		{
+			case 0:ret = Muki.ue;
+			case 1:ret = Muki.migi;
+			case 2:ret = Muki.shita;
+			case 3:ret = Muki.hidari;
+			default:trace("MUKIERROR");
+		}
+		return ret;
 	}
 }

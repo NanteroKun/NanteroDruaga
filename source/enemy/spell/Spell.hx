@@ -21,7 +21,7 @@ class Spell extends CharacterMovePattern
 		Target.animation.add("1", [6, 7], 30, true);
 		Target.animation.add("2", [4, 5], 30, true);
 		Target.animation.add("3", [2, 3], 30, true);
-		Target.animation.play(Std.string(Target.muki));
+		Target.animation.play(Std.string(Reg.MukiToInt(Target.muki)));
 	}
 	override public function Move(e:Float) 
 	{
@@ -29,7 +29,7 @@ class Spell extends CharacterMovePattern
 	}
 	override public function nisedraw() 
 	{
-		if (firstframe)
+		if (firstframe && !IsBlockCenter())
 		{
 			firstframe = false;
 		}

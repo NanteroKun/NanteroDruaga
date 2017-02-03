@@ -1,5 +1,6 @@
 package enemy.knight;
 
+import enums.CharacterSyu.Muki;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.math.FlxPoint;
@@ -21,7 +22,7 @@ class Gil extends Knight
 		super(s);
 		Target.setPosition(20, 36);
 		Target.speed = 1;
-		Target.muki = 2;
+		Target.muki = Muki.shita;
 		sword = new Sword();
 		shield = new FlxSprite();
 		sword.swordcnt = 4;
@@ -43,17 +44,17 @@ class Gil extends Knight
 		if (gilwaitcnt < 120){return;}
 		idoumuki =-1;
 		if(FlxG.keys.pressed.LEFT) {
-            idoumuki=3;
-        }
-        if(FlxG.keys.pressed.UP) {
-            idoumuki =0;
-        }
-        if(FlxG.keys.pressed.RIGHT) {
-            idoumuki = 1;
-        }
-        if(FlxG.keys.pressed.DOWN) {
-            idoumuki = 2;
-        }
+			idoumuki=3;
+		}
+		if(FlxG.keys.pressed.UP) {
+			idoumuki =0;
+		}
+		if(FlxG.keys.pressed.RIGHT) {
+			idoumuki = 1;
+		}
+		if(FlxG.keys.pressed.DOWN) {
+			idoumuki = 2;
+		}
 		direct.set(0, 0);
 		switch(idoumuki)
 		{
@@ -68,13 +69,12 @@ class Gil extends Knight
 		var kabehakai:Bool = sword.Move(FlxG.keys.pressed.Z);
 		if (kabehakai)
 		{
-			if ((Target.x - 20) % 24 == 0 && ((Target.y - 36) % 24 == 0))
+			if (idoumuki ==-1 /*&& マトック使用回数が残りアルデプロ*/)
 			{
-				if (idoumuki ==-1 /*&& マトック使用回数が残りアルデプロ*/)
+				var temp = ZahyoToBox();
+				if (temp.center)
 				{
-					var px:Int = Std.int((Target.x - 20) / 24);
-					var py:Int = Std.int((Target.y - 36) / 24);
-					if (Maze.WallDel(px, py, Target.muki))
+					if (Maze.WallDel(temp.bx, temp.by, Target.muki))
 					{
 						//マトック使用回数減らす
 					}
@@ -105,7 +105,7 @@ class Gil extends Knight
 	{
 		if ((x - 20) % 24 != 0)
 		{
-			if (Target.muki == 3)
+			if (Target.muki == Muki.hidari)
 			{
 				direct.x =-1;
 			}
@@ -115,7 +115,7 @@ class Gil extends Knight
 			}
 			return false;
 		}
-		Target.muki = 0;
+		Target.muki = Muki.ue;
 		if ((y + 36) % 24 != 0)
 		{
 			return true;
@@ -126,7 +126,7 @@ class Gil extends Knight
 	{
 		if ((y + 36) % 24 != 0)
 		{
-			if (Target.muki == 0)
+			if (Target.muki == Muki.ue)
 			{
 				direct.y =-1;
 			}
@@ -136,7 +136,7 @@ class Gil extends Knight
 			}
 			return false;
 		}
-		Target.muki = 1;
+		Target.muki = Muki.migi;
 		if ((x - 20) % 24 != 0)
 		{
 			return true;
@@ -147,7 +147,7 @@ class Gil extends Knight
 	{
 		if ((x - 20) % 24 != 0)
 		{
-			if (Target.muki == 3)
+			if (Target.muki == Muki.hidari)
 			{
 				direct.x =-1;
 			}
@@ -157,7 +157,7 @@ class Gil extends Knight
 			}
 			return false;
 		}
-		Target.muki = 2;
+		Target.muki = Muki.shita;
 		if ((y + 36) % 24 != 0)
 		{
 			return true;
@@ -168,7 +168,7 @@ class Gil extends Knight
 	{
 		if ((y + 36) % 24 != 0)
 		{
-			if (Target.muki == 0)
+			if (Target.muki == Muki.ue)
 			{
 				direct.y =-1;
 			}
@@ -178,7 +178,7 @@ class Gil extends Knight
 			}
 			return false;
 		}
-		Target.muki = 3;
+		Target.muki = Muki.hidari;
 		if ((x - 20) % 24 != 0)
 		{
 			return true;

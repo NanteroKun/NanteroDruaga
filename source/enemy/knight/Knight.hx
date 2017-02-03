@@ -16,7 +16,7 @@ class Knight extends Roper
 	public function new(s:Character) 
 	{
 		super(s);
-		Target.muki = 2;
+		Target.muki = Muki.shita;
 		Target.setPosition(Reg.XposSet(), Reg.YposSet());
 		walkcnt = 0;
 	}
@@ -39,7 +39,7 @@ class Knight extends Roper
 	}
 	override public function Move(e:Float):Void
 	{
-		sword.Move(GiltonoKyori());
+		sword.Move(GiltonoKyori(72));
 		walkcnt++;
 		super.Move(e);
 	}
@@ -49,7 +49,7 @@ class Knight extends Roper
 		shield.x = Target.x; shield.y = Target.y;
 		if (Type.enumEq(Target.syu,CharacterSyu.EnemySyu(LizardMan)))
 		{
-			switch (Target.muki)
+			switch (Reg.MukiToInt(Target.muki))
 			{
 				case 0:shield.draw(); sword.draw(); super.nisedraw();
 				case 3:shield.draw(); super.nisedraw(); sword.draw();
@@ -59,7 +59,7 @@ class Knight extends Roper
 		}
 		else
 		{
-			switch (Target.muki)
+			switch (Reg.MukiToInt(Target.muki))
 			{
 				case 0:shield.draw(); sword.draw(); super.nisedraw();
 				case 1:shield.draw(); super.nisedraw(); sword.draw();
@@ -69,20 +69,10 @@ class Knight extends Roper
 		}
 		SwordAnimation();
 	}
-	private function GiltonoKyori():Bool
-	{
-		var sx:Float = Target.x + 8; var sy:Float = Target.y + 8;
-		var gx:Float = Reg.GilPos.x + 8; var gy:Float = Reg.GilPos.y + 8;
-		if (Math.abs(gx - sx) < 72 && Math.abs(gy - sy) < 72)
-		{
-			return true;
-		}
-		return false;
-	}
 	private function SwordAnimation():Void
 	{
 		var w:Int;
-		w = Target.muki * 11;
+		w = Reg.MukiToInt(Target.muki) * 11;
 		if (sword.swordcnt == 0)
 		{
 			w += Std.int((walkcnt & 15) / 4);
@@ -94,9 +84,9 @@ class Knight extends Roper
 		sword.animation.play(Std.string(w));
 		var p:Int = Std.int(sword.swordcnt / 2);
 		p = Reg.intclamp(p, 0, 2);
-		p += Target.muki * 3;
+		p += Reg.MukiToInt(Target.muki) * 3;
 		shield.animation.play(Std.string(p));
-		var t:Int = Target.muki * 2;
+		var t:Int = Reg.MukiToInt(Target.muki) * 2;
 		if (walkcnt % 8 > 3)
 		{
 			t++;

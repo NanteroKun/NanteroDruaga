@@ -17,7 +17,7 @@ class WhiteSpell extends Spell
 	}
 	override public function Move(e:Float) 
 	{
-		if ((Target.x - 20) % 24 == 0 && (Target.y - 36) % 24 == 0 )
+		if (IsBlockCenter())
 		{
 			if (!IdousakiChk(Target.muki, Target.x, Target.y))
 			{

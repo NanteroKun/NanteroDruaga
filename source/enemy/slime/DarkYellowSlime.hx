@@ -35,7 +35,7 @@ class DarkYellowSlime extends Slime
 			case 2:syuu = CharacterSyu.SpellSyu(RedSpell);
 			case 3:syuu = CharacterSyu.SpellSyu(GreenSpell);
 		}
-		var s:TsuikaEnemyTable={syu:syuu, x:Target.x, y:Target.y, m:Target.muki, wait:0};
+		var s:TsuikaEnemyTable = {syu:syuu, x:Target.x, y:Target.y, m:Target.muki, wait:0};
 		TsuikaEnemy.TsuikaEnemyTableSet(s);
 	}
 }

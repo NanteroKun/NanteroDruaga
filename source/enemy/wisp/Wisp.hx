@@ -14,7 +14,7 @@ class Wisp extends CharacterMovePattern
 	{
 		super(s);
 		Target.setPosition(Reg.XposSet(), Reg.YposSet());
-		Target.muki = FlxG.random.int(0, 3);
+		Target.muki = Reg.RandomMuki();
 	}
 	override public function GraphicSet() 
 	{

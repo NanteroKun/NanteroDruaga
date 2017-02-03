@@ -1,8 +1,11 @@
 package;
 import enemy.Enemy;
+import enums.CharacterSyu.Muki;
 import flixel.FlxG;
 import flixel.FlxSprite;
+import flixel.math.FlxMath;
 import floorfolder.Maze;
+import typedefs.TsuikaEnemyTable.BlockPoint;
 
 /**
  * ...
@@ -12,6 +15,21 @@ import floorfolder.Maze;
 class CharacterMovePattern
 {
 	public var Target:Character;
+	public function IsBlockCenter():Bool
+	{
+		return ((Target.x - 20) % 24 == 0 && ((Target.y - 36) % 24 == 0));
+	}
+	/**
+	 * @param	center ブロックの中心か否か
+	 * @param	x	座標
+	 * @param	y	座標
+	 * @return		迷路配列用の(int,int)
+	 */
+	public function ZahyoToBox():BlockPoint
+	{
+		var ret:BlockPoint = {center:IsBlockCenter(),bx:Std.int((Target.x -20) / 24), by:Std.int((Target.y - 36) / 24)};
+		return ret;
+	}
 	public function new(s:Character) //Targetにs:Character参照渡しで以後Targetに対して操作する
 	{
 		Target = s;
@@ -24,15 +42,19 @@ class CharacterMovePattern
 	{
 		switch (Target.muki)
 		{
-			case 0:Target.y -= Target.speed;
-			case 1:Target.x += Target.speed;
-			case 2:Target.y += Target.speed;
-			case 3:Target.x -= Target.speed;
+			case Muki.ue :Target.y -= Target.speed;
+			case Muki.migi:Target.x += Target.speed;
+			case Muki.shita:Target.y += Target.speed;
+			case Muki.hidari:Target.x -= Target.speed;
 		}
 	}
 	public function nisedraw()
 	{
 		Target.nisedraw();
+	}
+	private function GiltonoKyori(range:Int):Bool
+	{
+		return (FlxMath.distanceBetween(Target, Reg.GilPos) < range);
 	}
 	/**
 	 * 
@@ -41,15 +63,15 @@ class CharacterMovePattern
 	 * @param	y　現在の座標Y
 	 * @return  移動予定先NO壁だったらTrue
 	 */
-	private function IdousakiChk(karimuki:Int,x:Float,y:Float):Bool
+	private function IdousakiChk(karimuki:Muki,x:Float,y:Float):Bool
 	{
 		var ikeru:Bool = false;
 		switch (karimuki)
 		{
-			case 0:ikeru = UeMoveChk(x,y);
-			case 1:ikeru = MigiMoveChk(x,y);
-			case 2:ikeru = ShitaMoveChk(x,y);
-			case 3:ikeru = HidariMoveChk(x,y);
+			case Muki.ue:ikeru = UeMoveChk(x,y);
+			case Muki.migi:ikeru = MigiMoveChk(x,y);
+			case Muki.shita:ikeru = ShitaMoveChk(x,y);
+			case Muki.hidari:ikeru = HidariMoveChk(x,y);
 		}
 		return ikeru;
 	}
@@ -59,8 +81,8 @@ class CharacterMovePattern
 		var x1:Int = Std.int((x - 20) / 24);
 		var y1:Int = Std.int((y - 36) / 24);
 		if (Maze.WallReturn(x1, y1 - 1) == 3 ) { return false; }
-        if (Maze.WallReturn(x1 - 1, y1 - 1) == 1 ) { return false; }
-        return true;
+		if (Maze.WallReturn(x1 - 1, y1 - 1) == 1 ) { return false; }
+		return true;
 	}
 	private function MigiMoveChk(x:Float, y:Float):Bool
 	{
@@ -68,8 +90,8 @@ class CharacterMovePattern
 		var x1:Int = Std.int((x - 20) / 24);
 		var y1:Int = Std.int((y - 36) / 24);
 		if (Maze.WallReturn(x1, y1 - 1) == 2) { return false; }
-        if (Maze.WallReturn(x1, y1) == 0) { return false; }
-        return true;
+		if (Maze.WallReturn(x1, y1) == 0) { return false; }
+		return true;
 	}
 	private function ShitaMoveChk(x:Float, y:Float):Bool
 	{
@@ -77,8 +99,8 @@ class CharacterMovePattern
 		var x1:Int = Std.int((x - 20) / 24);
 		var y1:Int = Std.int((y - 36) / 24);
 		if (Maze.WallReturn(x1, y1) == 3) { return false; }
-        if (Maze.WallReturn(x1 - 1, y1) == 1) { return false; }
-        return true;
+		if (Maze.WallReturn(x1 - 1, y1) == 1) { return false; }
+		return true;
 	}
 	private function HidariMoveChk(x:Float, y:Float):Bool
 	{

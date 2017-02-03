@@ -14,7 +14,7 @@ class Slime extends CharacterMovePattern
 	{
 		super(s);
 		waitcnt = FlxG.random.int(0, 255);
-		Target.muki = FlxG.random.int(0, 3);
+		Target.muki = Reg.RandomMuki();
 		walkcnt = 0;
 		Target.speed = 8;
 		Target.setPosition(Reg.XposSet(), Reg.YposSet());
@@ -34,7 +34,7 @@ class Slime extends CharacterMovePattern
 			waitcnt--;
 			if (waitcnt == 0)
 			{
-				Target.muki = FlxG.random.int(0, 3);
+				Target.muki = Reg.RandomMuki();
 				if (IdousakiChk(Target.muki, Target.x, Target.y))
 				{
 					Target.animation.play("walk");
@@ -42,7 +42,7 @@ class Slime extends CharacterMovePattern
 				}
 				else
 				{
-					Target.muki = FlxG.random.int(0, 3);
+					Target.muki = Reg.RandomMuki();
 					if (!IdousakiChk(Target.muki, Target.x, Target.y))
 					{
 						waitcnt = FlxG.random.int(0, waitbase) + 16;

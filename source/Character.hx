@@ -11,7 +11,7 @@ import flixel.FlxSprite;
 class Character extends FlxSprite
 {
 	public var speed:Float;
-	public var muki:Int;
+	public var muki:Muki;
 	public var syu:CharacterSyu;//
 	public var hitpoint:Int;
 	public var firstframe:Bool;
