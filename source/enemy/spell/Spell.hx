@@ -1,4 +1,5 @@
 package enemy.spell;
+import enums.CharacterSyu.Muki;
 
 /**
  * ...
@@ -17,11 +18,11 @@ class Spell extends CharacterMovePattern
 	{
 		super.GraphicSet();
 		Target.loadGraphic("assets/images/spell/spell.png", true, 16, 16);
-		Target.animation.add("0", [0, 1], 30, true);
-		Target.animation.add("1", [6, 7], 30, true);
-		Target.animation.add("2", [4, 5], 30, true);
-		Target.animation.add("3", [2, 3], 30, true);
-		Target.animation.play(Std.string(Reg.MukiToInt(Target.muki)));
+		Target.animation.add(Std.string(Muki.ue), [0, 1], 30, true);
+		Target.animation.add(Std.string(Muki.migi), [6, 7], 30, true);
+		Target.animation.add(Std.string(Muki.shita), [4, 5], 30, true);
+		Target.animation.add(Std.string(Muki.hidari), [2, 3], 30, true);
+		Target.animation.play(Std.string(Target.muki));
 	}
 	override public function Move(e:Float) 
 	{

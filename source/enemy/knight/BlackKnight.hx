@@ -12,11 +12,11 @@ class BlackKnight extends Knight
 		sword = new Sword();
 		shield = new FlxSprite();
 		super(s);
-		s.speed = 0.5;
-		s.hitpoint = 48;
+		Target.speed = 0.5;
+		Target.hitpoint = 48;
+		Target.getscore = 1000;
 		recovery1 = 48;
 		recovery2 = 21;
-		s.getscore = 1000;
 	}
 	override function GraphicSet() 
 	{

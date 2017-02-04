@@ -16,6 +16,7 @@ enum EnemySyu
 	BlueWispSlow; BlueWispFast; RedWispSlow; RedWispFast;
 	GreenSlime; BlackSlime; RedSlime; BlueSlime; DarkGreenSlime; DarkYellowSlime;
 	Mage; Druid; Sorcerer; Wizard;
+	MageGohst; DruidGohst; SorcererGohst; WizardGohst;
 	BlueKnight; BlackKnight; MirrorKnight; HyperKnight; LizardMan; RedKnight; HyperKnightSuper;
 }
 enum SpellSyu

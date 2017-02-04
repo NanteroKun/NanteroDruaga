@@ -25,10 +25,10 @@ class Magician extends CharacterMovePattern
 	}
 	override public function GraphicSet() 
 	{
-		for (i in 0...4)
-		{
-			Target.animation.add(Std.string(i), [i]);
-		}
+		Target.animation.add(Std.string(Muki.ue), [0]);
+		Target.animation.add(Std.string(Muki.migi), [1]);
+		Target.animation.add(Std.string(Muki.shita), [2]);
+		Target.animation.add(Std.string(Muki.hidari), [3]);
 		Target.animation.add("NO", [4]);
 	}
 	override public function Move(e:Float) 
@@ -62,13 +62,13 @@ class Magician extends CharacterMovePattern
 			{
 				case 0:magedisp(4);
 				case 1:magedisp(2);
-				case 2, 3:Target.animation.play(Std.string(Reg.MukiToInt(Target.muki)));
+				case 2, 3:Target.animation.play(Std.string((Target.muki)));
 				case 4:magedisp(2);
 				case 5:magedisp(4);
 			}
 			if (appcnt == 32)
 			{
-				Target.animation.play(Std.string(Reg.MukiToInt(Target.muki)));
+				Target.animation.play(Std.string(Target.muki));
 				var s:TsuikaEnemyTable={syu:dasuspell, x:Target.x, y:Target.y, m:Target.muki, wait:0};
 				TsuikaEnemy.TsuikaEnemyTableSet(s);
 			}
@@ -85,7 +85,7 @@ class Magician extends CharacterMovePattern
 	{
 		if (appcnt % t == 0 )
 		{	
-			Target.animation.play(Std.string(Reg.MukiToInt(Target.muki)));
+			Target.animation.play(Std.string(Target.muki));
 		}
 		else
 		{
@@ -134,16 +134,17 @@ class Magician extends CharacterMovePattern
 			Target.muki = emuki;
 			if (Type.enumEq(Target.syu,CharacterSyu.EnemySyu(Mage)) || Type.enumEq(Target.syu,CharacterSyu.EnemySyu(Sorcerer)))
 			{
-				var ok:Bool = false;
-				switch (emuki)
+				if (IdousakiChk(emuki, retpos.x, retpos.y))
 				{
-					case Muki.ue: if (UeMoveChk(retpos.x,retpos.y)) { ok = true; }
-					case Muki.migi: if (MigiMoveChk(retpos.x,retpos.y)) { ok = true; }
-					case Muki.shita: if (ShitaMoveChk(retpos.x,retpos.y)) { ok = true; }
-					case Muki.hidari: if (HidariMoveChk(retpos.x,retpos.y)){ ok = true; }
-					default: 
+					break;
 				}
-				if (ok == false && loopcnt < 100) {continue;}
+				else
+				{
+					if (loopcnt < 100) 
+					{
+						continue;
+					}
+				}
 			}
 			break;
 		}
