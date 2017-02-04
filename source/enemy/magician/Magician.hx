@@ -2,6 +2,7 @@ package enemy.magician;
 import enums.CharacterSyu;
 import flixel.FlxG;
 import flixel.math.FlxPoint;
+import typedefs.TsuikaEnemyTable;
 
 /**
  * ...
@@ -9,36 +10,38 @@ import flixel.math.FlxPoint;
  */
 class Magician extends CharacterMovePattern
 {
+	private var deteru:Bool;
 	private var waitcnt:Int;
+	private var appcnt:Int;
+	private var dasuspell:CharacterSyu;
 	public function new(s:Character) 
 	{
 		super(s);
-		waitcnt = FlxG.random.int((0, 7) * 16) + 48;
+		waitcnt = FlxG.random.int(0, 7) * 16 + 48;
+		appcnt = 0;
 		Target.speed = 0;
-		Target.setPosition(-10000,-10000);
+		Target.setPosition( -10000, -10000);
+		deteru = false;
 	}
 	override public function GraphicSet() 
 	{
-		for (i in 0...3)
+		for (i in 0...4)
 		{
-			Target.animation.add("Int4A" + Std.string(i), [i, 4, 4, 4, i, 4, 4, 4, i, 4, 4, 4, i, 4, 4, 4], 60, false);
-			Target.animation.add("Int2A" + Std.string(i), [i, 4, i, 4, i, 4, i, 4, i, 4, i, 4, i, 4, i, 4], 60, false);
-			Target.animation.add("Deta " + Std.string(i), [i, i, i, i], 15, false);
-			Target.animation.add("Int2K" + Std.string(i), [i, 4, i, 4, i, 4, i, 4, i, 4, i, 4, i, 4, i, 4], 60, false);
-			Target.animation.add("Int4K" + Std.string(i), [i, 4, 4, 4, i, 4, 4, 4, i, 4, 4, 4, i, 4, 4, 4], 60, false);
+			Target.animation.add(Std.string(i), [i]);
 		}
+		Target.animation.add("NO", [4]);
 	}
 	override public function Move(e:Float) 
 	{
-		if (waitcnt > 0)
+		if (waitcnt > 0 && !deteru)
 		{
 			waitcnt--;
-			Target.setPosition(-10000,-10000);
+			Target.setPosition( -10000, -10000);
 		}
-		if (waitcnt == 0 /*&& gilpositionapparok*/)
+		if (waitcnt == 0 && !deteru)
 		{
-			var px:Float = (Static.PS.gil.x - 20) % 24;
-			var py:Float = (Static.PS.gil.y - 36) % 24;
+			var px:Float = (Reg.GilPos.x - 20) % 24;
+			var py:Float = (Reg.GilPos.y - 36) % 24;
 			var denai:Bool = false;
 			if ((px >= 7 && px <= 17) || (py >= 7 && py <= 17))
 			{
@@ -48,15 +51,50 @@ class Magician extends CharacterMovePattern
 			{
 				var p:FlxPoint = MagePositionSet();
 				Target.setPosition(p.x, p.y);
+				deteru = true;
+				appcnt = 0;
 			}
 		}
+		if (deteru)
+		{
+			var appcnt2:Int = Std.int(appcnt / 16);
+			switch(appcnt2)
+			{
+				case 0:magedisp(4);
+				case 1:magedisp(2);
+				case 2, 3:Target.animation.play(Std.string(Reg.MukiToInt(Target.muki)));
+				case 4:magedisp(2);
+				case 5:magedisp(4);
+			}
+			if (appcnt == 32)
+			{
+				Target.animation.play(Std.string(Reg.MukiToInt(Target.muki)));
+				var s:TsuikaEnemyTable={syu:dasuspell, x:Target.x, y:Target.y, m:Target.muki, wait:0};
+				TsuikaEnemy.TsuikaEnemyTableSet(s);
+			}
+			if (appcnt == 96)
+			{
+				Target.setPosition( -10000, -10000);
+				deteru = false;
+				waitcnt = FlxG.random.int(0, 7) * 16 + 48;
+			}
+			appcnt++;
+		}
 	}
-	public function SpellDasu():Void
+	private function magedisp(t:Int):Void
 	{
-		//各種スライム.hx.SpellDasu()に実際のスペル出す処理、ありまぁ～す
+		if (appcnt % t == 0 )
+		{	
+			Target.animation.play(Std.string(Reg.MukiToInt(Target.muki)));
+		}
+		else
+		{
+			Target.animation.play("NO");
+		}
 	}
 	private function MagePositionSet():FlxPoint
 	{
+		var loopcnt:Int = 0;
 		var retpos:FlxPoint = FlxPoint.get(0, 0);
 		var tx:Float = Reg.GilPos.x;
 		var ty:Float = Reg.GilPos.y;
@@ -66,31 +104,29 @@ class Magician extends CharacterMovePattern
 		if ((ty - 36) % 24 > 16) { gy++; }
 		var ex:Int = -1;
 		var ey:Int = -1;
-		var emuki:Int = -1;
+		var emuki:Muki = Muki.shita;
 		while (true)
 		{
+			loopcnt++;
 			var syutsugen:Int = FlxG.random.int(0, 15);
 			switch (syutsugen)
 			{
-				case 0: ex = gx; ey = gy - 3; emuki = 2; 
-				case 1: ex = gx - 1; ey = gy - 2; emuki = 2; 
-				case 2: ex = gx; ey = gy - 2; emuki = 2; 
-				case 3: ex = gx + 1; ey = gy - 2; emuki = 2; 
-
-				case 4: ex = gx - 3; ey = gy; emuki = 1; 
-				case 5: ex = gx - 2; ey = gy - 1; emuki = 1; 
-				case 6: ex = gx - 2; ey = gy; emuki = 1; 
-				case 7: ex = gx - 2; ey = gy + 1; emuki = 1; 
-
-				case 8: ex = gx; ey = gy + 3; emuki = 0; 
-				case 9: ex = gx - 1; ey = gy + 2; emuki = 0; 
-				case 10: ex = gx; ey = gy + 2; emuki = 0; 
-				case 11: ex = gx + 1; ey = gy + 2; emuki = 0; 
-
-				case 12: ex = gx + 3; ey = gy; emuki = 3; 
-				case 13: ex = gx + 2; ey = gy - 1; emuki = 3; 
-				case 14: ex = gx + 2; ey = gy; emuki = 3; 
-				case 15: ex = gx + 2; ey = gy + 1; emuki = 3; 
+				case 0: ex = gx; ey = gy - 3; emuki = Muki.shita; 
+				case 1: ex = gx - 1; ey = gy - 2; emuki = Muki.shita; 
+				case 2: ex = gx; ey = gy - 2; emuki = Muki.shita; 
+				case 3: ex = gx + 1; ey = gy - 2; emuki = Muki.shita; 
+				case 4: ex = gx - 3; ey = gy; emuki = Muki.migi; 
+				case 5: ex = gx - 2; ey = gy - 1; emuki = Muki.migi; 
+				case 6: ex = gx - 2; ey = gy; emuki = Muki.migi; 
+				case 7: ex = gx - 2; ey = gy + 1; emuki = Muki.migi; 
+				case 8: ex = gx; ey = gy + 3; emuki = Muki.ue; 
+				case 9: ex = gx - 1; ey = gy + 2; emuki = Muki.ue; 
+				case 10: ex = gx; ey = gy + 2; emuki = Muki.ue;
+				case 11: ex = gx + 1; ey = gy + 2; emuki = Muki.ue; 
+				case 12: ex = gx + 3; ey = gy; emuki = Muki.hidari; 
+				case 13: ex = gx + 2; ey = gy - 1; emuki = Muki.hidari;  
+				case 14: ex = gx + 2; ey = gy; emuki = Muki.hidari;  
+				case 15: ex = gx + 2; ey = gy + 1; emuki = Muki.hidari;  
 			}
 			if (ex < 0 || ex > 17 || ey < 0 || ey > 8) { continue; }
 			retpos.x = ex * 24 + 20;
@@ -101,15 +137,16 @@ class Magician extends CharacterMovePattern
 				var ok:Bool = false;
 				switch (emuki)
 				{
-					case 0: if (uemovechk()) { ok = true; }
-					case 1: if (migimovechk()) { ok = true; }
-					case 2: if (shitamovechk()) { ok = true; }
-					case 3: if (hidarimovechk()){ ok = true; }
+					case Muki.ue: if (UeMoveChk(retpos.x,retpos.y)) { ok = true; }
+					case Muki.migi: if (MigiMoveChk(retpos.x,retpos.y)) { ok = true; }
+					case Muki.shita: if (ShitaMoveChk(retpos.x,retpos.y)) { ok = true; }
+					case Muki.hidari: if (HidariMoveChk(retpos.x,retpos.y)){ ok = true; }
 					default: 
 				}
-				if (ok == false) {continue;}
+				if (ok == false && loopcnt < 100) {continue;}
 			}
 			break;
 		}
+		return retpos;
 	}
 }

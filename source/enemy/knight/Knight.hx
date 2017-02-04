@@ -35,7 +35,7 @@ class Knight extends Roper
 		{
 			shield.animation.add(Std.string(i), [i]);
 		}
-		Target.animation.play(Std.string(Target.muki));
+		Target.animation.play(Std.string(Reg.MukiToInt(Target.muki)));
 	}
 	override public function Move(e:Float):Void
 	{

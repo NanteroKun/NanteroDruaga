@@ -33,7 +33,7 @@ class Spell extends CharacterMovePattern
 		{
 			firstframe = false;
 		}
-		else
+		if (!firstframe)
 		{
 			super.nisedraw();
 		}

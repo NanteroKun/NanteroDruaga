@@ -17,10 +17,10 @@ class GreenSpell extends Spell
 	}
 	override public function Move(e:Float) 
 	{
-		if (Target.x<=20|| Target.x >= 428||Target.y<=36||Target.y>=228)
+		super.Move(e);
+		if (Target.x < 20 || Target.x > 428 || Target.y < 36 || Target.y > 228)
 		{
 			Target.kill();
 		}
-		super.Move(e);
 	}
 }

@@ -4,6 +4,10 @@ import enemy.knight.*;
 import enemy.slime.*;
 import enemy.spell.*;
 import enemy.wisp.*;
+import enemy.magician.Druid;
+import enemy.magician.Mage;
+import enemy.magician.Sorcerer;
+import enemy.magician.Wizard;
 import flixel.FlxBasic;
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -66,6 +70,10 @@ class Enemy extends Character
 			case CharacterSyu.EnemySyu(HyperKnight):movepattern = new HyperKnight(this);
 			case CharacterSyu.EnemySyu(LizardMan):movepattern = new LizardMan(this);
 			case CharacterSyu.EnemySyu(HyperKnightSuper):movepattern = new HyperKnightSuper(this);
+			case CharacterSyu.EnemySyu(Mage):movepattern = new Mage(this);
+			case CharacterSyu.EnemySyu(Druid):movepattern = new Druid(this);
+			case CharacterSyu.EnemySyu(Sorcerer):movepattern = new Sorcerer(this);
+			case CharacterSyu.EnemySyu(Wizard):movepattern = new Wizard(this);
 		//	case CharacterSyu.Sonota(sonota):  trace("sonota");この書き方でsonotaを全部纏められる。素敵やん
 			default:trace("ENEMY ja Nai yatsu Dasicha DAMEEEEEEE!!!!");
 		}
