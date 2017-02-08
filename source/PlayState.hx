@@ -7,6 +7,7 @@ import enemy.slime.*;
 import enemy.wisp.*;
 import enemy.knight.*;
 import enemy.magician.*;
+import enemy.ghost.*;
 import enums.CharacterSyu;
 import flixel.FlxCamera;
 import flixel.FlxG;
@@ -168,6 +169,10 @@ class PlayState extends FlxState
 					temp.add({syu:CharacterSyu.EnemySyu(Wizard), num:1});
 					temp.add({syu:CharacterSyu.EnemySyu(Sorcerer), num:1});
 				temp.add({syu:CharacterSyu.EnemySyu(DarkGreenSlime), num:2});
+				temp.add({syu:CharacterSyu.EnemySyu(DruidGohst), num:2});
+				temp.add({syu:CharacterSyu.EnemySyu(WizardGohst), num:2});
+				temp.add({syu:CharacterSyu.EnemySyu(MageGohst), num:2});
+				temp.add({syu:CharacterSyu.EnemySyu(SorcererGohst), num:2});
 		}
 		return temp;
 	}

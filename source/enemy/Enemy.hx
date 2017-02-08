@@ -1,20 +1,14 @@
 package enemy;
 
+import enemy.ghost.*;
 import enemy.knight.*;
+import enemy.magician.*;
 import enemy.slime.*;
 import enemy.spell.*;
 import enemy.wisp.*;
-import enemy.magician.Druid;
-import enemy.magician.Mage;
-import enemy.magician.Sorcerer;
-import enemy.magician.Wizard;
-import flixel.FlxBasic;
-import flixel.FlxG;
-import flixel.FlxSprite;
-import flixel.FlxState;
-import flixel.group.FlxGroup.FlxTypedGroup;
-import flixel.system.FlxAssets.FlxGraphicAsset;
 import enums.CharacterSyu;
+import flixel.FlxG;
+import flixel.group.FlxGroup.FlxTypedGroup;
 
 /**
  * ...
@@ -74,6 +68,10 @@ class Enemy extends Character
 			case CharacterSyu.EnemySyu(Druid):movepattern = new Druid(this);
 			case CharacterSyu.EnemySyu(Sorcerer):movepattern = new Sorcerer(this);
 			case CharacterSyu.EnemySyu(Wizard):movepattern = new Wizard(this);
+			case CharacterSyu.EnemySyu(MageGohst):movepattern = new MageGhost(this);
+			case CharacterSyu.EnemySyu(SorcererGohst):movepattern = new SourcerGohst(this);
+			case CharacterSyu.EnemySyu(WizardGohst):movepattern = new WizardGohst(this);
+			case CharacterSyu.EnemySyu(DruidGohst):movepattern = new DruidGohst(this);
 		//	case CharacterSyu.Sonota(sonota):  trace("sonota");この書き方でsonotaを全部纏められる。素敵やん
 			default:trace("ENEMY ja Nai yatsu Dasicha DAMEEEEEEE!!!!");
 		}
