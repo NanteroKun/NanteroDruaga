@@ -5,7 +5,7 @@ import enums.CharacterSyu;
  * ...
  * @author 
  */
-class DruidGohst extends Ghost
+class DruidGhost extends Ghost
 {
 	public function new(s:Character) 
 	{

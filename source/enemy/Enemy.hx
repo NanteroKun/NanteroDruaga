@@ -6,6 +6,8 @@ import enemy.magician.*;
 import enemy.slime.*;
 import enemy.spell.*;
 import enemy.wisp.*;
+import enemy.ghost.DruidGhost;
+import enemy.ghost.WizardGhost;
 import enums.CharacterSyu;
 import flixel.FlxG;
 import flixel.group.FlxGroup.FlxTypedGroup;
@@ -68,10 +70,10 @@ class Enemy extends Character
 			case CharacterSyu.EnemySyu(Druid):movepattern = new Druid(this);
 			case CharacterSyu.EnemySyu(Sorcerer):movepattern = new Sorcerer(this);
 			case CharacterSyu.EnemySyu(Wizard):movepattern = new Wizard(this);
-			case CharacterSyu.EnemySyu(MageGohst):movepattern = new MageGhost(this);
-			case CharacterSyu.EnemySyu(SorcererGohst):movepattern = new SourcerGohst(this);
-			case CharacterSyu.EnemySyu(WizardGohst):movepattern = new WizardGohst(this);
-			case CharacterSyu.EnemySyu(DruidGohst):movepattern = new DruidGohst(this);
+			case CharacterSyu.EnemySyu(MageGhost):movepattern = new MageGhost(this);
+			case CharacterSyu.EnemySyu(SorcererGhost):movepattern = new SourcerGhost(this);
+			case CharacterSyu.EnemySyu(WizardGhost):movepattern = new WizardGhost(this);
+			case CharacterSyu.EnemySyu(DruidGhost):movepattern = new DruidGhost(this);
 		//	case CharacterSyu.Sonota(sonota):  trace("sonota");この書き方でsonotaを全部纏められる。素敵やん
 			default:trace("ENEMY ja Nai yatsu Dasicha DAMEEEEEEE!!!!");
 		}

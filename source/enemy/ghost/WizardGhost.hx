@@ -1,20 +1,20 @@
 package enemy.ghost;
-import enums.CharacterSyu;
+import enums.CharacterSyu.SpellSyu;
 
 /**
  * ...
  * @author 
  */
-class SourcerGohst extends Ghost
+class WizardGhost extends Ghost
 {
 	public function new(s:Character) 
 	{
 		super(s);
-		dasuspell = CharacterSyu.SpellSyu(RedSpell);
+		dasuspell = CharacterSyu.SpellSyu(GreenSpell);
 	}
 	override public function GraphicSet() 
 	{
-		Target.loadGraphic("assets/images/enemy/gohst/SorcerrorGohst.png", true, 16, 16);
+		Target.loadGraphic("assets/images/enemy/gohst/WizardGohst.png", true, 16, 16);
 		super.GraphicSet();
 	}
 	override public function Move(e:Float) 

@@ -169,10 +169,10 @@ class PlayState extends FlxState
 					temp.add({syu:CharacterSyu.EnemySyu(Wizard), num:1});
 					temp.add({syu:CharacterSyu.EnemySyu(Sorcerer), num:1});
 				temp.add({syu:CharacterSyu.EnemySyu(DarkGreenSlime), num:2});
-				temp.add({syu:CharacterSyu.EnemySyu(DruidGohst), num:2});
-				temp.add({syu:CharacterSyu.EnemySyu(WizardGohst), num:2});
-				temp.add({syu:CharacterSyu.EnemySyu(MageGohst), num:2});
-				temp.add({syu:CharacterSyu.EnemySyu(SorcererGohst), num:2});
+				temp.add({syu:CharacterSyu.EnemySyu(DruidGhost), num:2});
+				temp.add({syu:CharacterSyu.EnemySyu(WizardGhost), num:2});
+				temp.add({syu:CharacterSyu.EnemySyu(MageGhost), num:2});
+				temp.add({syu:CharacterSyu.EnemySyu(SorcererGhost), num:2});
 		}
 		return temp;
 	}
